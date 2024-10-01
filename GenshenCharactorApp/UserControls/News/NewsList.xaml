@@ -47,6 +47,8 @@
             </Setter>
         </Style>
         <Style TargetType="Button">
+            <Setter Property="Command" Value="{Binding DataContext.NewClickCommand, RelativeSource={RelativeSource AncestorType=ItemsControl, Mode=FindAncestor}}" />
+            <Setter Property="CommandParameter" Value="{Binding IInfoId}" />
             <Setter Property="Margin" Value="0,3" />
             <Setter Property="Height" Value="160" />
             <Setter Property="Template">

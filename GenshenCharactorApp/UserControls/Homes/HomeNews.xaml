@@ -61,6 +61,8 @@
             </Setter>
         </Style>
         <Style x:Key="Item" TargetType="Button">
+            <Setter Property="Command" Value="{Binding DataContext.NewClickCommand, RelativeSource={RelativeSource AncestorType=ItemsControl, Mode=FindAncestor}}" />
+            <Setter Property="CommandParameter" Value="{Binding IInfoId}" />
             <Setter Property="Height" Value="52" />
             <Setter Property="Template">
                 <Setter.Value>

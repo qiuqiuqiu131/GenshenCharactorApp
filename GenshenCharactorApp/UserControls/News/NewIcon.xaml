@@ -111,6 +111,6 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <Button />
+        <Button Command="{Binding DataContext.NewClickCommand, RelativeSource={RelativeSource AncestorType=ItemsControl, Mode=FindAncestor}}" CommandParameter="{Binding IInfoId}" />
     </Grid>
 </UserControl>

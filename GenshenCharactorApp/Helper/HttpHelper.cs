@@ -1,6 +1,7 @@
 ﻿using GenshenCharactorApp.Views;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
@@ -79,6 +80,11 @@ namespace GenshenCharactorApp.Helper
 
             return httpRes;
         }
-        
+
+        public static void OpenWebPage(string url)
+        {
+            Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
+        }
+
     }
 }

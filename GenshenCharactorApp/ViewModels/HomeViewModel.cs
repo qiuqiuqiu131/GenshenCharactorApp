@@ -1,5 +1,6 @@
 ﻿using GenshenCharactorApp.Common;
 using GenshenCharactorApp.Common.JosnData;
+using GenshenCharactorApp.Helper;
 using GenshenCharactorApp.Services.Interface;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -42,6 +43,7 @@ namespace GenshenCharactorApp.ViewModels
         public DelegateCommand<CityData> ItemClickCommand { get; private set; }
         public DelegateCommand NewsDetailClickCommand {  get; private set; }
         public DelegateCommand<string> NewsSelectionChangedCommand {  get; private set; }
+        public DelegateCommand<string> NewClickCommand { get; private set; }
 
         public HomeViewModel(IRegionManager regionManager,ILoadDataService loadDataService) 
         {
@@ -54,6 +56,7 @@ namespace GenshenCharactorApp.ViewModels
             ItemClickCommand = new DelegateCommand<CityData>(ItemClick);
             NewsDetailClickCommand = new DelegateCommand(NewsDetailClick);
             NewsSelectionChangedCommand = new DelegateCommand<string>(NewsSelectionChanged);
+            NewClickCommand = new DelegateCommand<string>(NewClick);
 
             loadDataService.LoadJsonBaseData<NewData>(settingData.NewDataUrl, 1, 5, -1).ContinueWith(result=>
             {
@@ -96,6 +99,11 @@ namespace GenshenCharactorApp.ViewModels
             {
                 { "city", data }
             });
+        }
+
+        private void NewClick(string obj)
+        {
+            HttpHelper.OpenWebPage("https://ys.mihoyo.com/main/news/detail/" + obj);
         }
     }
 }

@@ -98,19 +98,14 @@ namespace GenshenCharactorApp.ViewModels
             }
             else if(navigateBar.Url != null) 
             {
-                OpenWebPage(navigateBar.Url);
+                HttpHelper.OpenWebPage(navigateBar.Url);
                 SelectIndex = 0;
             }
         }
 
         private void Click(string obj)
         {
-            OpenWebPage(obj);
-        }
-
-        private void OpenWebPage(string url)
-        {
-            Process.Start(new ProcessStartInfo("cmd", $"/c start {url}") { CreateNoWindow = true });
+            HttpHelper.OpenWebPage(obj);
         }
     }
 }

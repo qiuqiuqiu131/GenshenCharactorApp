@@ -1,5 +1,6 @@
 ﻿using GenshenCharactorApp.Common;
 using GenshenCharactorApp.Common.JosnData;
+using GenshenCharactorApp.Helper;
 using GenshenCharactorApp.Services.Interface;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -9,6 +10,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -53,6 +55,7 @@ namespace GenshenCharactorApp.ViewModels
 
         public DelegateCommand<string> NewsOptionChangedCommand {  get; private set; }
         public DelegateCommand MoreNewCommand {  get; private set; }
+        public DelegateCommand<string> NewClickCommand {  get; private set; }
 
         private ProgramSettingData settingData;
 
@@ -76,6 +79,7 @@ namespace GenshenCharactorApp.ViewModels
 
             NewsOptionChangedCommand = new DelegateCommand<string>(NewsOptionChanged);
             MoreNewCommand = new DelegateCommand(MoreNew);
+            NewClickCommand = new DelegateCommand<string>(NewClick);
 
             InitData();
         }
@@ -157,6 +161,11 @@ namespace GenshenCharactorApp.ViewModels
                 _ => string.Empty,
             };
             return chanId;
+        }
+
+        private void NewClick(string obj)
+        {
+            HttpHelper.OpenWebPage("https://ys.mihoyo.com/main/news/detail/" + obj);
         }
 
         #region INavigateAware
