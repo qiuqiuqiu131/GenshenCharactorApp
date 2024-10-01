@@ -21,6 +21,7 @@ namespace GenshenCharactorApp.ViewModels
         private readonly ILoadDataService loadDataService;
         private ProgramData programData;
         private ProgramSettingData settingData;
+
         public string HomeVideoUrl => settingData.HomeVideoUrl;
         public List<CityData> CityDatas => programData.CityData;
 

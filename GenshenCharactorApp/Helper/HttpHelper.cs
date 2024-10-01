@@ -1,10 +1,12 @@
-﻿using System;
+﻿using GenshenCharactorApp.Views;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace GenshenCharactorApp.Helper
@@ -70,7 +72,7 @@ namespace GenshenCharactorApp.Helper
             var request = new HttpRequestMessage(HttpMethod.Get, url);
             var content = new StringContent("", null, "text/plain");
             request.Content = content;
-            
+
             var response = await client.SendAsync(request);
             response.EnsureSuccessStatusCode();
             var httpRes = await response.Content.ReadAsStringAsync();

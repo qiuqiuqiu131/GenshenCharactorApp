@@ -32,6 +32,7 @@ namespace GenshenCharactorApp
             containerRegistry.RegisterForNavigation<CharactorView,CharactorViewModel>();
             containerRegistry.RegisterForNavigation<WorldView,WorldViewModel>();
             containerRegistry.RegisterForNavigation<NewsView, NewsViewModel>();
+            containerRegistry.RegisterForNavigation<FailedView>();
 
             containerRegistry.Register<ILoadDataService, LoadDataService>();
         }

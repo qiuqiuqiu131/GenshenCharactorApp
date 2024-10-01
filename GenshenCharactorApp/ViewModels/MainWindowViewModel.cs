@@ -60,9 +60,10 @@ namespace GenshenCharactorApp.ViewModels
             this.regionManager = regionManager;
             this.loadDataService = loadDataService;
 
-            LoadSettingData();
             SelectionChangedCommand = new DelegateCommand<NavigateBar>(SelectionChanged);
             ClickCommand = new DelegateCommand<string>(Click);
+
+            LoadSettingData();
         }
 
         // 加载配置文件
