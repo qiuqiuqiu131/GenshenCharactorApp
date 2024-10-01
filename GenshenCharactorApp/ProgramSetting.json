@@ -1,0 +1,51 @@
+﻿{
+	"LowMemoryMode": true,
+	"CityDataUrl": "742",
+	"WorldDataUrl": "741",
+	"NewDataUrl": "719",
+	"NewsDataUrl": "720",
+	"NoticeDataUrl": "721",
+	"ActiveDataUrl": "722",
+	"NewTopDataUrl": "723",
+	"HomeVideoUrl": "https://ys.mihoyo.com/main/_nuxt/videos/bg.3e78e80.mp4",
+	"Bg1Url": "https://ys.mihoyo.com/main/_nuxt/medias/video-bgm.532ef479.mp3",
+	"Bg2Url": "https://ys.mihoyo.com/main/_nuxt/medias/video-play.3ba532fa.mp3",
+	"CityData": {
+		"蒙德城": "727",
+		"璃月港": "728",
+		"稻妻城": "729",
+		"须弥城": "730",
+		"枫丹廷": "731",
+		"纳塔": "936"
+	},
+	"NavigateBar": [
+		{
+			"Name": "首页",
+			"Target": "HomeView"
+		},
+		{
+			"Name": "新闻",
+			"Target": "NewsView"
+		},
+		{
+			"Name": "角色",
+			"Target": "CharactorView"
+		},
+		{
+			"Name": "世界",
+			"Target": "WorldView"
+		},
+		{
+			"Name": "漫画",
+			"Url": "https://ys.mihoyo.com/main/manga"
+		},
+		{
+			"Name": "赛事",
+			"Url": "https://act.mihoyo.com/ys/event/community-content-collection/index.html"
+		},
+		{
+			"Name": "充值中心",
+			"Url": "https://webstatic.mihoyo.com/ys/event/tcgmatch/index.html"
+		}
+	]
+}

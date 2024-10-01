@@ -1,0 +1,217 @@
+﻿<UserControl
+    x:Class="GenshenCharactorApp.UserControls.TopPanel"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:behavior="clr-namespace:GenshenCharactorApp.Behavior"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:GenshenCharactorApp.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="topPanel"
+    d:DesignHeight="80"
+    d:DesignWidth="1250"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <!--  音乐按钮  -->
+        <Style x:Key="MyToggleButton" TargetType="ToggleButton">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ToggleButton">
+                        <Grid>
+                            <Image
+                                x:Name="checked"
+                                Source="../Resources/Music.png"
+                                Visibility="Visible" />
+                            <Image
+                                x:Name="unchecked"
+                                Source="../Resources/UnCheckMusic.png"
+                                Visibility="Hidden" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="False">
+                                <Setter TargetName="checked" Property="Visibility" Value="Hidden" />
+                                <Setter TargetName="unchecked" Property="Visibility" Value="Visible" />
+                            </Trigger>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter TargetName="checked" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="unchecked" Property="Visibility" Value="Hidden" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--  listboxItem  -->
+        <Style TargetType="ListBoxItem">
+            <Setter Property="Width" Value="90" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <EventSetter Event="MouseEnter" Handler="ListBoxItem_MouseEnter" />
+            <EventSetter Event="MouseLeave" Handler="ListBoxItem_MouseLeave" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Grid Background="Transparent">
+                            <TextBlock
+                                x:Name="text"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="16.5"
+                                Foreground="#AAFFFFFF"
+                                Text="{Binding Name}" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="text" Property="Foreground" Value="white" />
+                                <Setter TargetName="text" Property="TextBlock.Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect
+                                            BlurRadius="30"
+                                            ShadowDepth="1"
+                                            Color="#FF80B6FF" />
+                                    </Setter.Value>
+                                </Setter>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter TargetName="text" Property="Foreground" Value="white" />
+                                <Setter TargetName="text" Property="TextBlock.Effect">
+                                    <Setter.Value>
+                                        <DropShadowEffect
+                                            BlurRadius="30"
+                                            ShadowDepth="1"
+                                            Color="#FF80B6FF" />
+                                    </Setter.Value>
+                                </Setter>
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <!--  listbox  -->
+        <Style TargetType="ListBox">
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
+            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="RightButton" TargetType="Button">
+            <Setter Property="Opacity" Value="0.7" />
+            <Setter Property="Margin" Value="10" />
+            <Setter Property="FontSize" Value="16" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Grid>
+                            <ContentPresenter Name="Content" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand" />
+                                <Setter Property="Opacity" Value="1" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Border Background="Black" Opacity="0.7" />
+        <StackPanel Orientation="Horizontal">
+            <ToggleButton
+                Margin="55,15,25,15"
+                Checked="ToggleButton_Checked"
+                IsChecked="True"
+                Style="{StaticResource MyToggleButton}"
+                Unchecked="ToggleButton_Unchecked" />
+            <Image
+                Height="85"
+                Margin="0,-15"
+                Source="https://webstatic.mihoyo.com/bh3/upload/officialsites/201908/ys_1565764084_7084.png" />
+            <Grid Margin="5,0">
+                <ListBox
+                    x:Name="NavigateBars"
+                    Width="800"
+                    ItemsSource="{Binding NavigateBars}"
+                    SelectedIndex="{Binding SelectIndex}"
+                    SelectionChanged="TopListBox_SelectionChanged">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="SelectionChanged">
+                            <i:InvokeCommandAction Command="{Binding SelectionChangedCommand}" CommandParameter="{Binding ElementName=NavigateBars, Path=SelectedItem}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ListBox>
+                <Canvas>
+                    <Rectangle
+                        x:Name="rectangle"
+                        Canvas.Left="0"
+                        Width="50"
+                        Height="5"
+                        Margin="22,0"
+                        Fill="LightBlue" />
+                </Canvas>
+            </Grid>
+        </StackPanel>
+
+        <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+            <Button
+                Command="{Binding ClickCommand}"
+                CommandParameter="https://jiazhang.mihoyo.com/index.html"
+                Style="{StaticResource RightButton}">
+                <StackPanel Background="Transparent" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="成长关爱系统" />
+                    <Image
+                        Width="30"
+                        Margin="10,8,10,8"
+                        Source="/Resources/Love.png" />
+                </StackPanel>
+            </Button>
+            <!--<Button
+                Command="{Binding ClickCommand}"
+                CommandParameter="https://jiazhang.mihoyo.com/index.html"
+                Style="{StaticResource RightButton}">
+                <StackPanel Background="Transparent" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="登录" />
+                    <Image
+                        Width="30"
+                        Margin="10,8,0,8"
+                        Source="/Resources/Person.png" />
+                </StackPanel>
+            </Button>-->
+            <Button
+                Margin="5,0,30,0"
+                Click="QuitButton_Click"
+                Style="{StaticResource RightButton}">
+                <Grid>
+                    <Ellipse
+                        Width="20"
+                        Height="20"
+                        Fill="White" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontFamily="bold"
+                        FontSize="20"
+                        Foreground="Black"
+                        Text="×" />
+                </Grid>
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
