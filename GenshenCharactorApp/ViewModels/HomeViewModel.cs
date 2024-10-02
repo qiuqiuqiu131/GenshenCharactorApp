@@ -87,6 +87,7 @@ namespace GenshenCharactorApp.ViewModels
             HomeNewClickCommand = new DelegateCommand<string>(HomeNewClick);
 
             settingData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).SettingData;
+            ProgramData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).ProgramData;
         }
 
         private void NewsSelectionChanged(string obj)

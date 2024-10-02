@@ -166,6 +166,7 @@ namespace GenshenCharactorApp.ViewModels
             ArrowCommand = new DelegateCommand<string>(Arrow);
 
             settingData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).SettingData;
+            ProgramData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).ProgramData;
         }
 
         private void InitAllData()

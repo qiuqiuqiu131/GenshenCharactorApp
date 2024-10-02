@@ -49,6 +49,7 @@ namespace GenshenCharactorApp.ViewModels
         public WorldViewModel()
         {
             settingData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).SettingData;
+            ProgramData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).ProgramData;
 
             worlds = new List<String>();
             worlds.Add("首页");
