@@ -247,7 +247,7 @@
                         Background="Transparent"
                         HorizontalScrollBarVisibility="Hidden"
                         VerticalScrollBarVisibility="Hidden">
-                        <ItemsControl>
+                        <ItemsControl ItemsSource="{Binding HomeNewDatas}">
                             <ItemsControl.ItemTemplate>
                                 <DataTemplate>
                                     <Button Style="{StaticResource HomeNew}" />

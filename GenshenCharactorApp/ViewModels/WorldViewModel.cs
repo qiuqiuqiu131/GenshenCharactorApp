@@ -14,8 +14,22 @@ namespace GenshenCharactorApp.ViewModels
     public class WorldViewModel:BindableBase,INavigationAware
     {
         private ProgramData programData;
+        private ProgramData ProgramData
+        {
+            get => programData;
+            set
+            {
+                if(programData != value)
+                {
+                    programData = value;
+                    RaisePropertyChanged(nameof(WorldDatas));
+                }
+            }
+        }
+
         private ProgramSettingData settingData;
-        public List<WorldData> WorldDatas => programData.WorldData;
+        
+        public List<WorldData> WorldDatas => ProgramData.WorldData;
 
         private List<String> worlds;
         public List<String> Worlds => worlds;
@@ -34,7 +48,6 @@ namespace GenshenCharactorApp.ViewModels
 
         public WorldViewModel()
         {
-            programData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).ProgramData;
             settingData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).SettingData;
 
             worlds = new List<String>();
@@ -45,7 +58,7 @@ namespace GenshenCharactorApp.ViewModels
         #region INavigationAware
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-
+            ProgramData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).ProgramData;
         }
 
         public bool IsNavigationTarget(NavigationContext navigationContext) => true;

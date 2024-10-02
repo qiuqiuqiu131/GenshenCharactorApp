@@ -38,18 +38,6 @@ namespace GenshenCharactorApp.ViewModels
         }
 
         private ProgramSettingData settingData;
-        private ProgramSettingData SettingData
-        {
-            get => settingData;
-            set
-            {
-                if (settingData != value)
-                {
-                    settingData = value;
-                    RaisePropertyChanged(nameof(HomeVideoUrl));
-                }
-            }
-        }
 
         // 主界面Video
         public string HomeVideoUrl => settingData.HomeVideoUrl;
@@ -97,6 +85,8 @@ namespace GenshenCharactorApp.ViewModels
             NewsSelectionChangedCommand = new DelegateCommand<string>(NewsSelectionChanged);
             NewClickCommand = new DelegateCommand<string>(NewClick);
             HomeNewClickCommand = new DelegateCommand<string>(HomeNewClick);
+
+            settingData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).SettingData;
         }
 
         private void NewsSelectionChanged(string obj)
@@ -148,7 +138,6 @@ namespace GenshenCharactorApp.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            SettingData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).SettingData;
             ProgramData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).ProgramData;
 
             loadDataService.LoadJsonBaseData<NewData>(settingData.NewDataUrl, 1, 5, -1).ContinueWith(result =>

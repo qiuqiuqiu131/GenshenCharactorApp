@@ -23,6 +23,25 @@ namespace GenshenCharactorApp.ViewModels
     public class CharactorViewModel:BindableBase,INavigationAware
     {
         #region Property
+        private ProgramData programData;
+        public ProgramData ProgramData
+        {
+            get => programData;
+            set
+            {
+                if (programData != value)
+                {
+                    programData = value;
+                    RaisePropertyChanged(nameof(programData));
+                }
+            }
+        }
+
+        private ProgramSettingData settingData;
+
+        public List<CityData> CityDatas => programData.CityData;
+
+
         // 角色数据数组
         private ObservableCollection<CharactorData> charaList = new();
         public ObservableCollection<CharactorData> CharaList
@@ -118,10 +137,6 @@ namespace GenshenCharactorApp.ViewModels
         #endregion
 
         #region Data
-        private ProgramData programData;
-        private ProgramSettingData settingData;
-        public List<CityData> CityDatas => programData.CityData;
-
         // 属性图集
         private Dictionary<string, BitmapImage> propertyImages = new ();
 
@@ -150,10 +165,7 @@ namespace GenshenCharactorApp.ViewModels
 
             ArrowCommand = new DelegateCommand<string>(Arrow);
 
-            programData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).ProgramData;
             settingData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).SettingData;
-
-            SelectedCity = CityDatas[0];
         }
 
         private void InitAllData()
@@ -348,6 +360,10 @@ namespace GenshenCharactorApp.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
+            ProgramData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).ProgramData;
+
+            SelectedCity = CityDatas[0];
+
             var param = navigationContext.Parameters;
 
             if (param.ContainsKey("city"))
