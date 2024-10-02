@@ -13,6 +13,7 @@ namespace GenshenCharactorApp.Common
         public string WorldDataUrl {  get; set; }
         public string CityDataUrl {  get; set; }
         
+        public string HomeNewsDataUrl {  get; set; }
         public string NewDataUrl {  get; set; }
         public string NewsDataUrl { get; set; }
         public string NoticeDataUrl { get; set; }

@@ -128,6 +128,24 @@
             </Setter>
         </Style>
 
+        <Style x:Key="HomeNew" TargetType="Button">
+            <Setter Property="Width" Value="550" />
+            <Setter Property="Height" Value="370" />
+            <Setter Property="Command" Value="{Binding DataContext.HomeNewClickCommand, RelativeSource={RelativeSource AncestorType=ItemsControl, Mode=FindAncestor}}" />
+            <Setter Property="CommandParameter" Value="{Binding Url}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Image Source="{Binding Image}" Stretch="Fill" />
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
         <Style x:Key="button" TargetType="Button">
             <Setter Property="Width" Value="150" />
             <Setter Property="Height" Value="50" />
@@ -229,19 +247,18 @@
                         Background="Transparent"
                         HorizontalScrollBarVisibility="Hidden"
                         VerticalScrollBarVisibility="Hidden">
-                        <StackPanel Orientation="Horizontal">
-                            <StackPanel.Resources>
-                                <Style TargetType="Image">
-                                    <Setter Property="Width" Value="550" />
-                                    <Setter Property="Height" Value="370" />
-                                    <Setter Property="Stretch" Value="Fill" />
-                                </Style>
-                            </StackPanel.Resources>
-                            <Image Source="https://fastcdn.mihoyo.com/content-v2/hk4e/125584/662f176cdc5fea0d77ca7058550dbd97_176400324373884350.jpg" />
-                            <Image Source="https://fastcdn.mihoyo.com/content-v2/hk4e/125583/ea03686153569ae2531794fa7bbedcc7_2611713081370530863.jpg" />
-                            <Image Source="https://fastcdn.mihoyo.com/content-v2/hk4e/125582/17f5ab37170165a753d591f76695546b_7229644327172953439.jpg" />
-                            <Image Source="https://fastcdn.mihoyo.com/content-v2/hk4e/125580/c7d28b7637fcb45a1d8c542d2956b9d8_5674096414546517505.jpg" />
-                        </StackPanel>
+                        <ItemsControl>
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Style="{StaticResource HomeNew}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
                     </ScrollViewer>
                     <ListBox
                         x:Name="Listbox"

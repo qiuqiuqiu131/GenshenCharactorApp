@@ -2,6 +2,7 @@
 	"LowMemoryMode": true,
 	"CityDataUrl": "742",
 	"WorldDataUrl": "741",
+	"HomeNewsDataUrl": "716",
 	"NewDataUrl": "719",
 	"NewsDataUrl": "720",
 	"NoticeDataUrl": "721",
