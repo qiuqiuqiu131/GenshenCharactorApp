@@ -108,21 +108,9 @@
             </Setter>
         </Style>
 
-        <Style TargetType="ListBox">
+        <Style BasedOn="{StaticResource BaseListBox}" TargetType="ListBox">
             <Setter Property="Margin" Value="245,0" />
             <Setter Property="Padding" Value="0,10" />
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="ScrollViewer.CanContentScroll" Value="False" />
-            <Setter Property="BorderThickness" Value="0" />
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
-            <Setter Property="ItemsPanel">
-                <Setter.Value>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </Setter.Value>
-            </Setter>
         </Style>
     </UserControl.Resources>
 

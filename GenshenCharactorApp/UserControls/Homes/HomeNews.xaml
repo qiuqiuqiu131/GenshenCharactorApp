@@ -46,11 +46,10 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="TopList" TargetType="ListBox">
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="BorderThickness" Value="0" />
+        <Style
+            x:Key="TopList"
+            BasedOn="{StaticResource BaseListBox}"
+            TargetType="ListBox">
             <Setter Property="ItemContainerStyle" Value="{StaticResource TopItem}" />
             <Setter Property="ItemsPanel">
                 <Setter.Value>
@@ -107,11 +106,10 @@
                 </Setter.Value>
             </Setter>
         </Style>
-        <Style x:Key="List" TargetType="ItemsControl">
-            <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
-            <Setter Property="Background" Value="Transparent" />
-            <Setter Property="BorderThickness" Value="0" />
+        <Style
+            x:Key="List"
+            BasedOn="{StaticResource BaseItemsContorl}"
+            TargetType="ItemsControl">
             <Setter Property="ItemTemplate">
                 <Setter.Value>
                     <DataTemplate>
@@ -127,7 +125,6 @@
                 </Setter.Value>
             </Setter>
         </Style>
-
         <Style x:Key="HomeNew" TargetType="Button">
             <Setter Property="Width" Value="550" />
             <Setter Property="Height" Value="370" />

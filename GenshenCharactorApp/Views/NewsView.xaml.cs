@@ -24,6 +24,7 @@ namespace GenshenCharactorApp.Views
     public partial class NewsView : UserControl
     {
         private bool isMoving;
+        private bool cantMove;
         private bool isTop = true;
 
         private DoubleAnimation ani = new();
@@ -63,12 +64,13 @@ namespace GenshenCharactorApp.Views
             Storyboard.SetTarget(ani, scrollView);
             Storyboard.SetTargetProperty(ani, new PropertyPath("(ext:ScrollViewExtension.MyVerticalOffset)"));
             sb.Children.Add(ani);
-            sb.Completed += (s, e) => isMoving = false;
+            sb.Completed += (s, e) => { isMoving = false; };
         }
 
         private void SetScrollViewerOffset(double value)
         {
-            isMoving = true;
+            sb.Stop();
+
             ani.To = value;
             sb.Begin();
 
@@ -86,17 +88,11 @@ namespace GenshenCharactorApp.Views
 
         private void scrollView_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            if (isMoving)
-            {
-                e.Handled = true;
-                return;
-            }
-
             double dis;
             if (e.Delta > 0)
-                dis = -350;
+                dis = -300;
             else
-                dis = 350;
+                dis = 300;
             SetScrollViewerOffset(scrollView.VerticalOffset + dis);
             e.Handled = true;
         }

@@ -3,6 +3,7 @@ using GenshenCharactorApp.UserControls;
 using GenshenCharactorApp.ViewModels;
 using Prism.Events;
 using Prism.Regions;
+using Prism.Services.Dialogs;
 using System;
 using System.Linq;
 using System.Threading;
@@ -23,14 +24,15 @@ namespace GenshenCharactorApp.Views
         private MediaPlayer Bg1 = new MediaPlayer();
         private MediaPlayer Bg2 = new MediaPlayer();
         private readonly IRegionManager regionManager;
+        private readonly IDialogService dialogService;
 
-        public MainWindow(IRegionManager regionManager)
+        public MainWindow(IRegionManager regionManager,IDialogService dialogService)
         {
             InitializeComponent();
             PlayAudio();
 
             this.regionManager = regionManager;
-
+            this.dialogService = dialogService;
             TopPanel.StopAudioEvent += AudioStop;
             TopPanel.PlayAudioEvent += AudioPlay;
         }
@@ -74,6 +76,11 @@ namespace GenshenCharactorApp.Views
         {
             TopPanel.Opacity = 0;
             regionManager.Regions["MainViewRegion"].RequestNavigate("FailedView");
+        }
+
+        public void Quit()
+        {
+            Application.Current.Shutdown();
         }
     }
 }

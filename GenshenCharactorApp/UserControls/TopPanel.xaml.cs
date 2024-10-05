@@ -92,11 +92,6 @@ namespace GenshenCharactorApp.UserControls
             }
         }
 
-        private void QuitButton_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();
-        }
-
         private void ToggleButton_Checked(object sender, RoutedEventArgs e)
         {
             PlayAudioEvent?.Invoke();

@@ -22,7 +22,6 @@ namespace GenshenCharactorApp.Views
     /// </summary>
     public partial class HomeView : UserControl
     {
-        private bool isMoving;
         private bool isTop = true;
 
         private DoubleAnimation ani = new();
@@ -52,11 +51,6 @@ namespace GenshenCharactorApp.Views
 
         private void scrollView_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-            if (isMoving)
-            {
-                e.Handled = true;
-                return;
-            }
 
             double dis;
             if (e.Delta > 0)
@@ -82,12 +76,10 @@ namespace GenshenCharactorApp.Views
             Storyboard.SetTarget(ani, scrollView);
             Storyboard.SetTargetProperty(ani, new PropertyPath("(ext:ScrollViewExtension.MyVerticalOffset)"));
             sb.Children.Add(ani);
-            sb.Completed += (s, e) => isMoving = false;
         }
 
         private void SetScrollViewerOffset(double value)
         {
-            isMoving = true;
             ani.To = value;
             sb.Begin();
 

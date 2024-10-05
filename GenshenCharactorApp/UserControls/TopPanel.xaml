@@ -95,18 +95,11 @@
         </Style>
 
         <!--  listbox  -->
-        <Style TargetType="ListBox">
+        <Style BasedOn="{StaticResource BaseListBox}" TargetType="ListBox">
             <Setter Property="Background" Value="Transparent" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
             <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />
-            <Setter Property="ItemsPanel">
-                <Setter.Value>
-                    <ItemsPanelTemplate>
-                        <StackPanel Orientation="Horizontal" />
-                    </ItemsPanelTemplate>
-                </Setter.Value>
-            </Setter>
         </Style>
 
         <Style x:Key="RightButton" TargetType="Button">
@@ -194,10 +187,12 @@
                         Source="/Resources/Person.png" />
                 </StackPanel>
             </Button>-->
-            <Button
-                Margin="5,0,30,0"
-                Click="QuitButton_Click"
-                Style="{StaticResource RightButton}">
+            <Button Margin="5,0,30,0" Style="{StaticResource RightButton}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:CallMethodAction MethodName="Quit" TargetObject="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
                 <Grid>
                     <Ellipse
                         Width="20"
