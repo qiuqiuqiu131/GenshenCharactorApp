@@ -24,15 +24,13 @@ namespace GenshenCharactorApp.Views
         private MediaPlayer Bg1 = new MediaPlayer();
         private MediaPlayer Bg2 = new MediaPlayer();
         private readonly IRegionManager regionManager;
-        private readonly IDialogService dialogService;
 
-        public MainWindow(IRegionManager regionManager,IDialogService dialogService)
+        public MainWindow(IRegionManager regionManager)
         {
             InitializeComponent();
             PlayAudio();
 
             this.regionManager = regionManager;
-            this.dialogService = dialogService;
             TopPanel.StopAudioEvent += AudioStop;
             TopPanel.PlayAudioEvent += AudioPlay;
         }

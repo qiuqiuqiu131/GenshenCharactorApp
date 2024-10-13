@@ -28,7 +28,9 @@ namespace GenshenCharactorApp.UserControls
         private DoubleAnimation ani = new();
         private Storyboard sb = new();
 
-        private bool isSelctionChanged = false;
+        private CancellationTokenSource cts = new();
+
+        private bool isMoving = false;
 
         public HomeNews()
         {
@@ -41,31 +43,42 @@ namespace GenshenCharactorApp.UserControls
 
         private void HomeNews_Loaded(object sender, RoutedEventArgs e)
         {
-            PlayAnim();
+            StartAnim();
         }
 
-        private async void PlayAnim()
+        private void StartAnim()
         {
-            await Task.Delay(new TimeSpan(0, 0, 7));
+            cts.Cancel();
+            cts = new CancellationTokenSource();
+            PlayAnim(cts.Token);
+        }
 
-            if(isSelctionChanged)
+        private async void PlayAnim(CancellationToken token)
+        {
+            try
             {
-                isSelctionChanged = false;
-                return;
+                await Task.Delay(new TimeSpan(0, 0, 7), token);
+
+                if (token.IsCancellationRequested)
+                    return;
+
+                isMoving = true;
+                currentIndex++;
+                if (currentIndex == 4)
+                    currentIndex = 0;
+                SetScrollViewerOffset(currentIndex * 550);
+                Listbox.SelectedIndex = currentIndex;
+
+                StartAnim();
             }
-
-            currentIndex++;
-            if (currentIndex == 4)
-                currentIndex = 0;
-            Listbox.SelectedIndex = currentIndex;
-            SetScrollViewerOffset(currentIndex * 550);
-            PlayAnim();
-
+            catch (TaskCanceledException)
+            {
+            }
         }
 
         private void InitStoryBoard()
         {
-            ani.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 300));
+            ani.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 400));
             ani.EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut };
             Storyboard.SetTarget(ani, scrollView);
             Storyboard.SetTargetProperty(ani, new PropertyPath("(ext:ScrollViewExtension.MyHorizontalOffset)"));
@@ -80,11 +93,15 @@ namespace GenshenCharactorApp.UserControls
 
         private void Listbox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            isSelctionChanged = true;
+            if(isMoving)
+            {
+                isMoving = false;
+                return;
+            }
 
             currentIndex = Listbox.SelectedIndex;
             SetScrollViewerOffset(currentIndex * 550);
-            PlayAnim();
+            StartAnim();
         }
     }
 }
