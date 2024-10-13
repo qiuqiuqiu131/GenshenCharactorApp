@@ -149,7 +149,6 @@ namespace GenshenCharactorApp.ViewModels
             loadDataService.LoadJsonBaseData<HomeNewData>(settingData.HomeNewsDataUrl, 1, 4, -1).ContinueWith(result =>
             {
                 HomeNewDatas = new ObservableCollection<HomeNewData>(result.Result);
-                HomeNewDatas.Add(HomeNewDatas[0]);
             });
         }
 
