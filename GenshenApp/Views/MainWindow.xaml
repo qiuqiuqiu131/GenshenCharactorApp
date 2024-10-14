@@ -18,11 +18,67 @@
     Background="Transparent"
     FontFamily="微软雅黑"
     Icon="https://ys.mihoyo.com/main/favicon.ico"
-    ResizeMode="NoResize"
+    ResizeMode="CanMinimize"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">
-    <Grid>
+    <Window.Resources>
+        <ResourceDictionary>
+            <Storyboard x:Key="HideWindow">
+                <DoubleAnimation
+                    Storyboard.TargetProperty="Opacity"
+                    To="0"
+                    Duration="0:0:0.2" />
+                <DoubleAnimation
+                    FillBehavior="Stop"
+                    Storyboard.TargetName="MainGrid"
+                    Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)"
+                    To="0.5"
+                    Duration="0:0:0.3" />
+                <DoubleAnimation
+                    FillBehavior="Stop"
+                    Storyboard.TargetName="MainGrid"
+                    Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)"
+                    To="0.5"
+                    Duration="0:0:0.3" />
+            </Storyboard>
+            <Storyboard x:Key="ShowWindow">
+                <DoubleAnimation
+                    FillBehavior="Stop"
+                    Storyboard.TargetName="MainGrid"
+                    Storyboard.TargetProperty="Opacity"
+                    From="0"
+                    To="1"
+                    Duration="0:0:0.2" />
+                <DoubleAnimation
+                    FillBehavior="Stop"
+                    Storyboard.TargetName="MainGrid"
+                    Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleX)"
+                    From="0.6"
+                    To="1"
+                    Duration="0:0:0.2" />
+                <DoubleAnimation
+                    FillBehavior="Stop"
+                    Storyboard.TargetName="MainGrid"
+                    Storyboard.TargetProperty="(UIElement.RenderTransform).(TransformGroup.Children)[0].(ScaleY)"
+                    From="0.6"
+                    To="1"
+                    Duration="0:0:0.2" />
+            </Storyboard>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <BeginStoryboard Storyboard="{StaticResource ShowWindow}" />
+        </EventTrigger>
+    </Window.Triggers>
+    <Grid x:Name="MainGrid" RenderTransformOrigin="0.5,0.5">
+        <Grid.RenderTransform>
+            <TransformGroup>
+                <ScaleTransform />
+            </TransformGroup>
+        </Grid.RenderTransform>
+
         <Grid Background="White" ClipToBounds="True">
             <Grid.Clip>
                 <RectangleGeometry
@@ -49,8 +105,13 @@
             </us:TopPanel>
 
             <ContentControl
-                x:Name="LoadingContent"
+                x:Name="DialogContent"
                 Panel.ZIndex="2"
+                Visibility="Collapsed" />
+
+            <ContentControl
+                x:Name="LoadingContent"
+                Panel.ZIndex="3"
                 Opacity="1" />
         </Grid>
     </Grid>

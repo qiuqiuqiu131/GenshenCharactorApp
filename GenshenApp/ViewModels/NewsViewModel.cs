@@ -14,10 +14,12 @@ using GenshenApp.Common;
 using GenshenApp.Common.JosnData;
 using GenshenApp.Helper;
 using GenshenApp.Services.Interface;
+using Prism.Events;
+using GenshenApp.Events;
 
 namespace GenshenApp.ViewModels
 {
-    public class NewsViewModel : BindableBase
+    public class NewsViewModel : BindableBase,INavigationAware
     {
         #region Property
         private ObservableCollection<NewData> newTops;
@@ -70,18 +72,20 @@ namespace GenshenApp.ViewModels
         public event Action MoreDetailLoadOver;
 
         private readonly ILoadDataService loadDataService;
+        private readonly IEventAggregator eventAggregator;
 
-        public NewsViewModel(ILoadDataService loadDataService)
+        public NewsViewModel(ILoadDataService loadDataService,IEventAggregator eventAggregator)
         {
             this.loadDataService = loadDataService;
+            this.eventAggregator = eventAggregator;
+
+            eventAggregator.GetEvent<HttpFailed>().Subscribe(Free);
 
             settingData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).SettingData;
 
             NewsOptionChangedCommand = new DelegateCommand<string>(NewsOptionChanged);
             MoreNewCommand = new DelegateCommand(MoreNew);
             NewClickCommand = new DelegateCommand<string>(NewClick);
-
-            InitData();
         }
 
         private void InitData()
@@ -166,6 +170,24 @@ namespace GenshenApp.ViewModels
         private void NewClick(string obj)
         {
             HttpHelper.OpenWebPage("https://ys.mihoyo.com/main/news/detail/" + obj);
+        }
+
+        #region INavigationAware
+        public void OnNavigatedTo(NavigationContext navigationContext)
+        {
+            InitData();
+        }
+
+        public bool IsNavigationTarget(NavigationContext navigationContext) => true;
+        public void OnNavigatedFrom(NavigationContext navigationContext)
+        {
+        }
+        #endregion
+
+        private void Free()
+        {
+            foreach(var l in newDatas.Values)
+                l.Clear();
         }
     }
 

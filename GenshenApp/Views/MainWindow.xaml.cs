@@ -24,6 +24,8 @@ namespace GenshenApp.Views
         private readonly IContainerProvider container;
         private readonly IEventAggregator eventAggregator;
 
+        private MyDialogView dialogView;
+
         public MainWindow(IContainerProvider container,
             IEventAggregator eventAggregator)
         {
@@ -33,6 +35,8 @@ namespace GenshenApp.Views
 
             eventAggregator.GetEvent<InitOver>().Subscribe(InitOver);
             eventAggregator.GetEvent<HttpFailed>().Subscribe(HttpFailed);
+            eventAggregator.GetEvent<DialogHide>().Subscribe(DialogHide);
+            eventAggregator.GetEvent<DialogShow>().Subscribe(DialogShow);
 
             TopPanel.StopAudioEvent += AudioStop;
             TopPanel.PlayAudioEvent += AudioPlay;
@@ -45,6 +49,9 @@ namespace GenshenApp.Views
             LoadingContent.Visibility = Visibility.Visible;
             LoadingContent.Opacity = 1;
             LoadingContent.Content = container.Resolve<Loading>();
+
+            DialogContent.Content = (dialogView = container.Resolve<MyDialogView>());
+            dialogView.HideOverEvent += () => DialogContent.Visibility = Visibility.Collapsed;
         }
 
         private void InitOver()
@@ -104,19 +111,44 @@ namespace GenshenApp.Views
         }
         #endregion
 
+        #region Dialog
+        public void DialogShow(object obj)
+        {
+            dialogView.DiagContent = obj ;
+            DialogContent.Visibility = Visibility.Visible;
+            dialogView.Show();
+        }
 
-        public void HttpFailed()
+        public void DialogHide()
+        {
+            dialogView.Hide();
+        }
+        #endregion
+
+        private void HttpFailed()
         {
             eventAggregator.GetEvent<HttpFailed>().Unsubscribe(HttpFailed);
 
             LoadingContent.Visibility = Visibility.Visible;
             LoadingContent.Opacity = 1;
             LoadingContent.Content = container.Resolve<FailedView>();  
+
+            GC.Collect();
+        }
+
+        public void Minimized()
+        {
+            WindowState = WindowState.Minimized;
         }
 
         public void Quit()
         {
-            Application.Current.Shutdown();
+            var story = (Storyboard)this.Resources["HideWindow"];
+            if (story != null)
+            {
+                story.Completed += delegate { Application.Current.Shutdown(); };
+                story.Begin(this);
+            }
         }
     }
 }

@@ -25,6 +25,8 @@
     <None Remove="Resources\WorldArrow.png" />
     <None Remove="Resources\WorldArrowBack.png" />
     <None Remove="Resources\WorldSlide.png" />
+    <None Remove="Resources\X.png" />
+    <None Remove="Resources\year.png" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="ProgramSetting.json">
@@ -87,6 +89,12 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Top.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\X.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\year.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

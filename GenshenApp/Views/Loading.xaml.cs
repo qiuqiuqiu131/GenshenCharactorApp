@@ -1,6 +1,6 @@
 ﻿using System.Windows.Controls;
 
-namespace GenshenApp.UserControls;
+namespace GenshenApp.Views;
 
 public partial class Loading : UserControl
 {

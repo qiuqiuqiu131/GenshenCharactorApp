@@ -36,6 +36,9 @@ namespace GenshenApp
             containerRegistry.RegisterForNavigation<FailedView>();
             containerRegistry.RegisterForNavigation<Loading>();
 
+            containerRegistry.RegisterForNavigation<MyDialogView>();
+            containerRegistry.RegisterForNavigation<YearView>();
+
             containerRegistry.Register<ILoadDataService, LoadDataService>();
         }
     }

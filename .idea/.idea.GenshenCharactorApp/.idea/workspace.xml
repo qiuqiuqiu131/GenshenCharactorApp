@@ -8,85 +8,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ff31a86-8dba-4a66-ac30-6ea6b66773fe" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Loading.xaml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Loading.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp.sln" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenCharactorApp.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/App.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/App.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/App.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Behavior/DragBehavior.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Behavior/DragBehavior.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Common/CharactorFullData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Common/CharactorFullData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Common/JosnData/CharactorData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Common/JosnData/CharactorData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Common/JosnData/CityData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Common/JosnData/CityData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Common/JosnData/HomeNewData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Common/JosnData/HomeNewData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Common/JosnData/JsonDataBase.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Common/JosnData/JsonDataBase.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Common/JosnData/NewData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Common/JosnData/NewData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Common/JosnData/WorldData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Common/JosnData/WorldData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Common/NavigateBar.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Common/NavigateBar.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Common/ProgramData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Common/ProgramData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Common/ProgramSettingData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Common/ProgramSettingData.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Converter/CityToBoolConverter.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Converter/CityToBoolConverter.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Events/AudioEvent.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Events/AudioEvent.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Extension/ScrollViewExtension.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Extension/ScrollViewExtension.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/GenshenCharactorApp.csproj" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/GenshenApp.csproj" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/GenshenCharactorApp.generated.sln" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/GenshenCharactorApp.generated.sln" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Helper/HttpHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Helper/HttpHelper.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/ProgramSetting.json" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/ProgramSetting.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/AudioLeft.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/AudioLeft.jpg" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/AudioPlay.png" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/AudioPlay.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/AudioPlaying.gif" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/AudioPlaying.gif" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/CityArrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/CityArrow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/Love.png" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/Love.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/Music.png" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/Music.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/Note.png" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/Note.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/Person.png" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/Person.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/TitleArrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/TitleArrow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/Top.png" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/Top.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/UnCheckMusic.png" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/UnCheckMusic.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/WorldArrow.png" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/WorldArrow.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/WorldArrowBack.png" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/WorldArrowBack.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/WorldSlide.png" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/WorldSlide.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/content.png" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/content.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Resources/light.png" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Resources/light.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Services/Interface/ILoadDataService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Services/Interface/ILoadDataService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Services/LoadDataService.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Services/LoadDataService.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/Charactors/CharactorList.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Charactors/CharactorList.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/Charactors/CharactorList.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Charactors/CharactorList.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/Charactors/LeftPanel.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Charactors/LeftPanel.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/Charactors/LeftPanel.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Charactors/LeftPanel.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/Homes/CityItem.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Homes/CityItem.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/Homes/CityItem.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Homes/CityItem.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/Homes/HomeNews.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Homes/HomeNews.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/Homes/HomeNews.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Homes/HomeNews.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/News/NewIcon.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/News/NewIcon.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/News/NewIcon.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/News/NewIcon.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/News/NewsList.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/News/NewsList.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/News/NewsList.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/News/NewsList.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/TopButton.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/TopButton.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/TopButton.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/TopButton.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/TopPanel.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/TopPanel.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/TopPanel.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/TopPanel.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/Worlds/WorldPanel.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Worlds/WorldPanel.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/Worlds/WorldPanel.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Worlds/WorldPanel.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/Worlds/WorldRightPanel.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Worlds/WorldRightPanel.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/UserControls/Worlds/WorldRightPanel.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Worlds/WorldRightPanel.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/ViewModels/CharactorViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/ViewModels/CharactorViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/ViewModels/ErrorWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/ViewModels/ErrorWindowViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/ViewModels/HomeViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/ViewModels/HomeViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/ViewModels/MainWindowViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/ViewModels/MainWindowViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/ViewModels/NewsViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/ViewModels/NewsViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/ViewModels/WorldViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/ViewModels/WorldViewModel.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Views/CharactorView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/CharactorView.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Views/CharactorView.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/CharactorView.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Views/FailedView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/FailedView.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Views/FailedView.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/FailedView.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Views/HomeView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/HomeView.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Views/HomeView.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/HomeView.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Views/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Views/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Views/NewsView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/NewsView.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Views/NewsView.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/NewsView.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Views/WorldView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/WorldView.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenCharactorApp/Views/WorldView.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/WorldView.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GenshenCharactorApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GenshenCharactorApp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/App.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/UserControls/TopPanel.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/TopPanel.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml.cs" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,15 +26,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/GenshenApp/ViewModels/ErrorWindowViewModel.cs" root0="FORCE_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7b7221a26f9e49768fa85e6a15f9122916460/8a/c3146b6c/EventAggregator.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GenshenApp/ViewModels/MainWindowViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml.cs" root0="FORCE_HIGHLIGHTING" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 6
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 6
+}</component>
   <component name="ProjectId" id="2nQQ3AnYW8u5a2MEOiLjRprpRpb" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -116,7 +42,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Project.GenshenCharactorApp.executor": "Debug",
+    ".NET Project.GenshenCharactorApp.executor": "Run",
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -165,6 +91,7 @@
       <option name="presentableId" value="Default" />
       <updated>1728902617886</updated>
       <workItem from="1728902620292" duration="2829000" />
+      <workItem from="1728914050727" duration="369000" />
     </task>
     <servers />
   </component>

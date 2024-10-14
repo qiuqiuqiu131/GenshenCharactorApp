@@ -153,18 +153,26 @@
                         Source="/Resources/Love.png" />
                 </StackPanel>
             </Button>
-            <!--<Button
-                Command="{Binding ClickCommand}"
-                CommandParameter="https://jiazhang.mihoyo.com/index.html"
-                Style="{StaticResource RightButton}">
-                <StackPanel Background="Transparent" Orientation="Horizontal">
-                    <TextBlock VerticalAlignment="Center" Text="登录" />
-                    <Image
-                        Width="30"
-                        Margin="10,8,0,8"
-                        Source="/Resources/Person.png" />
-                </StackPanel>
-            </Button>-->
+            <Button Margin="10,0,20,0" Style="{StaticResource RightButton}">
+                <i:Interaction.Triggers>
+                    <i:EventTrigger EventName="Click">
+                        <i:CallMethodAction MethodName="Minimized" TargetObject="{Binding RelativeSource={RelativeSource AncestorType=Window, Mode=FindAncestor}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <Grid>
+                    <Ellipse
+                        Width="20"
+                        Height="20"
+                        Fill="White" />
+                    <TextBlock
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        FontFamily="bold"
+                        FontSize="20"
+                        Foreground="Black"
+                        Text="-" />
+                </Grid>
+            </Button>
             <Button Margin="5,0,30,0" Style="{StaticResource RightButton}">
                 <i:Interaction.Triggers>
                     <i:EventTrigger EventName="Click">

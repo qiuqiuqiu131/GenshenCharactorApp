@@ -1,5 +1,7 @@
 ﻿using GenshenApp.Events;
+using GenshenApp.UserControls;
 using Prism.Events;
+using Prism.Ioc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,13 +27,13 @@ namespace GenshenApp.Views
     public partial class HomeView : UserControl
     {
         private readonly IEventAggregator eventAggregator;
-
+        private readonly IContainerProvider container;
         private bool isTop = true;
 
         private DoubleAnimation ani = new();
         private Storyboard sb = new();
 
-        public HomeView(IEventAggregator eventAggregator)
+        public HomeView(IEventAggregator eventAggregator,IContainerProvider container)
         {
             InitializeComponent();
 
@@ -41,7 +43,9 @@ namespace GenshenApp.Views
             TopButton.TopEvent += TopButton_TopEvent;
 
             InitStoryBoard();
+
             this.eventAggregator = eventAggregator;
+            this.container = container;
         }
 
         private void TopButton_TopEvent()
@@ -104,6 +108,12 @@ namespace GenshenApp.Views
                 isTop = true;
                 TopButton.Visibility = Visibility.Hidden;
             }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            object obj = container.Resolve<YearView>();
+            eventAggregator.GetEvent<DialogShow>().Publish(obj);
         }
     }
 }

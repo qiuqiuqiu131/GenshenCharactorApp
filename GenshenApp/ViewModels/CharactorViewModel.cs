@@ -17,6 +17,8 @@ using GenshenApp.Common.JosnData;
 using GenshenApp.Helper;
 using GenshenApp.Services.Interface;
 using Prism.Regions;
+using Prism.Events;
+using GenshenApp.Events;
 
 namespace GenshenApp.ViewModels
 {
@@ -153,15 +155,18 @@ namespace GenshenApp.ViewModels
         #endregion
 
         private readonly ILoadDataService loadDataService;
-
+        private readonly IEventAggregator eventAggregator;
         private bool isLoading;
 
         public event Action CharactorChanged;
         public event Action NavigationChanged;
 
-        public CharactorViewModel(ILoadDataService loadDataService)
+        public CharactorViewModel(ILoadDataService loadDataService,IEventAggregator eventAggregator)
         {
             this.loadDataService = loadDataService;
+            this.eventAggregator = eventAggregator;
+
+            eventAggregator.GetEvent<HttpFailed>().Subscribe(Free);
 
             ArrowCommand = new DelegateCommand<string>(Arrow);
 
@@ -376,5 +381,13 @@ namespace GenshenApp.ViewModels
                 SelectedChara = CharaList[0];
         }
         #endregion
+    
+        private void Free()
+        {
+            propertyImages.Clear();
+            charactors.Clear();
+            backgroundImages.Clear();
+            charaListDatas.Clear();
+        }
     }
 }

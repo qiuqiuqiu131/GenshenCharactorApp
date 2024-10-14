@@ -67,6 +67,12 @@
                         Source="{Binding HomeVideoUrl}"
                         Stretch="UniformToFill"
                         UnloadedBehavior="Pause" />
+                    <Button
+                        Margin="1171,590,10,19"
+                        Click="Button_Click"
+                        Style="{StaticResource NormalButton}">
+                        <Image Margin="-14,-14,12,12" Source="/Resources/year.png" />
+                    </Button>
                     <Canvas
                         Margin="0,0,0,40"
                         HorizontalAlignment="Center"

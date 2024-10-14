@@ -8,6 +8,8 @@ using System.Threading.Tasks;
 using System.Windows;
 using GenshenApp.Common;
 using GenshenApp.Common.JosnData;
+using GenshenApp.Events;
+using Prism.Events;
 
 namespace GenshenApp.ViewModels
 {
@@ -35,6 +37,7 @@ namespace GenshenApp.ViewModels
         public List<String> Worlds => worlds;
 
         private int selectIndex = 0;
+
         public int SelectIndex
         {
             get => selectIndex;
@@ -56,6 +59,7 @@ namespace GenshenApp.ViewModels
             foreach(var item in WorldDatas) 
                 worlds.Add(item.Name);
         }
+
         #region INavigationAware
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
