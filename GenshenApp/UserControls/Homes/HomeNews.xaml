@@ -1,0 +1,350 @@
+﻿<UserControl
+    x:Class="GenshenApp.UserControls.HomeNews"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:ext="clr-namespace:GenshenApp.Extension"
+    xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+    xmlns:local="clr-namespace:GenshenApp.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="800"
+    d:DesignWidth="1250"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style x:Key="TopItem" TargetType="ListBoxItem">
+            <Setter Property="Height" Value="60" />
+            <Setter Property="Width" Value="65" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="ListBoxItem">
+                        <Grid Background="Transparent">
+                            <TextBlock
+                                x:Name="text"
+                                HorizontalAlignment="Center"
+                                VerticalAlignment="Center"
+                                FontSize="17"
+                                Foreground="White"
+                                Text="{Binding}" />
+                            <Border
+                                x:Name="border"
+                                Width="65"
+                                Height="5"
+                                VerticalAlignment="Bottom"
+                                Background="#FFFFD49F"
+                                Visibility="Hidden" />
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter TargetName="border" Property="Visibility" Value="Visible" />
+                                <Setter TargetName="text" Property="Foreground" Value="#FFFACC97" />
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style
+            x:Key="TopList"
+            BasedOn="{StaticResource BaseListBox}"
+            TargetType="ListBox">
+            <Setter Property="ItemContainerStyle" Value="{StaticResource TopItem}" />
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Horizontal" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="Item" TargetType="Button">
+            <Setter Property="Command" Value="{Binding DataContext.NewClickCommand, RelativeSource={RelativeSource AncestorType=ItemsControl, Mode=FindAncestor}}" />
+            <Setter Property="CommandParameter" Value="{Binding IInfoId}" />
+            <Setter Property="Height" Value="52" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            x:Name="border"
+                            Background="Transparent"
+                            BorderBrush="#AAFFFFFF"
+                            BorderThickness="0,0,0,1">
+                            <Grid>
+                                <Grid.Resources>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Foreground" Value="White" />
+                                        <Setter Property="FontSize" Value="14" />
+                                        <Setter Property="VerticalAlignment" Value="Center" />
+                                    </Style>
+                                </Grid.Resources>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="70" />
+                                </Grid.ColumnDefinitions>
+                                <TextBlock
+                                    Grid.Column="0"
+                                    Margin="10,0"
+                                    Text="{Binding Name}"
+                                    TextTrimming="CharacterEllipsis" />
+                                <TextBlock
+                                    Grid.Column="1"
+                                    Margin="0,10,0,0"
+                                    FontSize="12"
+                                    Foreground="#77FFFFFF"
+                                    Text="{Binding StartTime}" />
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand" />
+                                <Setter TargetName="border" Property="Background" Value="#20FFFFFF" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style
+            x:Key="List"
+            BasedOn="{StaticResource BaseItemsContorl}"
+            TargetType="ItemsControl">
+            <Setter Property="ItemTemplate">
+                <Setter.Value>
+                    <DataTemplate>
+                        <Button Style="{StaticResource Item}" />
+                    </DataTemplate>
+                </Setter.Value>
+            </Setter>
+            <Setter Property="ItemsPanel">
+                <Setter.Value>
+                    <ItemsPanelTemplate>
+                        <StackPanel Orientation="Vertical" />
+                    </ItemsPanelTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="HomeNew" TargetType="Button">
+            <Setter Property="Width" Value="550" />
+            <Setter Property="Height" Value="370" />
+            <Setter Property="Command" Value="{Binding DataContext.HomeNewClickCommand, RelativeSource={RelativeSource AncestorType=ItemsControl, Mode=FindAncestor}}" />
+            <Setter Property="CommandParameter" Value="{Binding Url}" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Image Source="{Binding Image}" Stretch="Fill" />
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style x:Key="button" TargetType="Button">
+            <Setter Property="Width" Value="150" />
+            <Setter Property="Height" Value="50" />
+            <Setter Property="HorizontalAlignment" Value="Right" />
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <StackPanel
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Orientation="Horizontal">
+                            <StackPanel.Resources>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="Opacity" Value="0.7" />
+                                    <Setter Property="FontSize" Value="17" />
+                                    <Setter Property="VerticalAlignment" Value="Center" />
+                                </Style>
+                            </StackPanel.Resources>
+                            <Border
+                                x:Name="border"
+                                Margin="10,0"
+                                Padding="3,0"
+                                BorderBrush="#FFAF8B69"
+                                BorderThickness="0.3">
+                                <TextBlock
+                                    x:Name="text1"
+                                    Height="22"
+                                    Margin="0,-8,0,0"
+                                    FontSize="22"
+                                    Foreground="#FFAF8B69"
+                                    Text="+">
+                                    <TextBlock.Effect>
+                                        <DropShadowEffect
+                                            BlurRadius="15"
+                                            ShadowDepth="0"
+                                            Color="Black" />
+                                    </TextBlock.Effect>
+                                </TextBlock>
+                            </Border>
+                            <TextBlock x:Name="text2" Text="查看全部资讯" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand" />
+                                <Setter TargetName="border" Property="Background" Value="#4490613D" />
+                                <Setter TargetName="text2" Property="Foreground" Value="#FFFACC97" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Image
+            HorizontalAlignment="Center"
+            VerticalAlignment="Center"
+            Source="https://ys.mihoyo.com/main/_nuxt/img/news_bg.29770c4.jpg"
+            Stretch="UniformToFill" />
+        <StackPanel VerticalAlignment="Center">
+            <StackPanel
+                Margin="0,30,0,0"
+                HorizontalAlignment="Center"
+                Orientation="Horizontal">
+                <Image
+                    Width="350"
+                    VerticalAlignment="Center"
+                    Source="/Resources/TitleArrow.png" />
+                <TextBlock
+                    Margin="30,0,30,0"
+                    VerticalAlignment="Center"
+                    FontSize="40"
+                    Foreground="White"
+                    Text="新闻资讯" />
+                <Image
+                    Width="350"
+                    VerticalAlignment="Center"
+                    Source="/Resources/TitleArrow.png">
+                    <Image.RenderTransform>
+                        <ScaleTransform CenterX="175" ScaleX="-1" />
+                    </Image.RenderTransform>
+                </Image>
+            </StackPanel>
+            <Grid
+                Width="1100"
+                Height="370"
+                Margin="0,40"
+                HorizontalAlignment="Center"
+                Background="Transparent">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid Background="Black">
+                    <ScrollViewer
+                        x:Name="scrollView"
+                        Background="Transparent"
+                        HorizontalScrollBarVisibility="Hidden"
+                        VerticalScrollBarVisibility="Hidden">
+                        <ItemsControl ItemsSource="{Binding HomeNewDatas}">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Button Style="{StaticResource HomeNew}" />
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                            <ItemsControl.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <StackPanel Orientation="Horizontal" />
+                                </ItemsPanelTemplate>
+                            </ItemsControl.ItemsPanel>
+                        </ItemsControl>
+                    </ScrollViewer>
+                    <ListBox
+                        x:Name="Listbox"
+                        Margin="0,5"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Bottom"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        ScrollViewer.HorizontalScrollBarVisibility="Hidden"
+                        ScrollViewer.VerticalScrollBarVisibility="Hidden"
+                        SelectedIndex="0"
+                        SelectionChanged="Listbox_SelectionChanged">
+                        <ListBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <StackPanel Orientation="Horizontal" />
+                            </ItemsPanelTemplate>
+                        </ListBox.ItemsPanel>
+                        <ListBox.ItemContainerStyle>
+                            <Style TargetType="ListBoxItem">
+                                <Setter Property="Width" Value="17" />
+                                <Setter Property="Height" Value="17" />
+                                <Setter Property="Margin" Value="6" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="ListBoxItem">
+                                            <Grid>
+                                                <Ellipse
+                                                    x:Name="circle"
+                                                    Fill="Transparent"
+                                                    Stroke="White"
+                                                    StrokeThickness="1">
+                                                    <Ellipse.Effect>
+                                                        <DropShadowEffect
+                                                            BlurRadius="10"
+                                                            ShadowDepth="1"
+                                                            Color="Gray" />
+                                                    </Ellipse.Effect>
+                                                </Ellipse>
+                                            </Grid>
+                                            <ControlTemplate.Triggers>
+                                                <Trigger Property="IsMouseOver" Value="True">
+                                                    <Setter Property="Cursor" Value="Hand" />
+                                                </Trigger>
+                                                <Trigger Property="IsSelected" Value="True">
+                                                    <Setter TargetName="circle" Property="Fill" Value="White" />
+                                                </Trigger>
+                                            </ControlTemplate.Triggers>
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListBox.ItemContainerStyle>
+                        <ListBoxItem />
+                        <ListBoxItem />
+                        <ListBoxItem />
+                        <ListBoxItem />
+                    </ListBox>
+                </Grid>
+                <Grid Grid.Column="1" Background="#70000000">
+                    <Line
+                        Opacity="0.5"
+                        Stroke="White"
+                        StrokeThickness="2"
+                        X1="21.5"
+                        X2="530"
+                        Y1="57.5"
+                        Y2="57.5" />
+                    <StackPanel Margin="20,0,20,0" Orientation="Vertical">
+                        <ListBox
+                            x:Name="NewList"
+                            Height="60"
+                            ItemsSource="{Binding NewBars}"
+                            SelectedIndex="0"
+                            Style="{StaticResource TopList}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger EventName="SelectionChanged">
+                                    <i:InvokeCommandAction Command="{Binding NewsSelectionChangedCommand}" CommandParameter="{Binding ElementName=NewList, Path=SelectedItem}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </ListBox>
+                        <ItemsControl
+                            Height="260"
+                            Margin="1,0"
+                            ItemsSource="{Binding ListItems}"
+                            Style="{StaticResource List}" />
+                        <Button Command="{Binding NewsDetailClickCommand}" Style="{StaticResource button}" />
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</UserControl>

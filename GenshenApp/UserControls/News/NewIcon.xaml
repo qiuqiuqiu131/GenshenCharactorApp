@@ -1,0 +1,116 @@
+﻿<UserControl
+    x:Class="GenshenApp.UserControls.NewIcon"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:GenshenApp.UserControls"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Width="370"
+    Height="370"
+    d:DesignHeight="370"
+    d:DesignWidth="370"
+    mc:Ignorable="d">
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border
+                            Margin="6,6"
+                            Background="#99000000"
+                            CornerRadius="3">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="1.1*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid
+                                    Width="330"
+                                    Height="160"
+                                    ClipToBounds="True">
+                                    <Image
+                                        Width="330"
+                                        Height="160"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        d:Source="https://fastcdn.mihoyo.com/content-v2/hk4e/125834/c659ad4aa15cb3c6253a02c88431d0c2_6098577118768378923.jpg"
+                                        Source="{Binding Image}"
+                                        Stretch="UniformToFill">
+                                        <Image.RenderTransform>
+                                            <ScaleTransform x:Name="Image" CenterX="165" CenterY="75" ScaleX="1" ScaleY="1" />
+                                        </Image.RenderTransform>
+                                    </Image>
+                                </Grid>
+                                <DockPanel Grid.Row="1" Margin="15,0,15,10">
+                                    <Grid DockPanel.Dock="Bottom">
+                                        <TextBlock
+                                            HorizontalAlignment="Left"
+                                            FontSize="15"
+                                            Foreground="White"
+                                            Opacity="0.6"
+                                            Text="{Binding StartTime}" />
+                                        <TextBlock
+                                            HorizontalAlignment="Right"
+                                            FontSize="15"
+                                            Foreground="LightGreen"
+                                            Opacity="0.8"
+                                            Text="新闻" />
+                                    </Grid>
+                                    <TextBlock
+                                        MaxHeight="60"
+                                        VerticalAlignment="Top"
+                                        FontSize="19"
+                                        Foreground="White"
+                                        LineHeight="30"
+                                        Text="{Binding Name}"
+                                        TextTrimming="CharacterEllipsis"
+                                        TextWrapping="Wrap" />
+                                </DockPanel>
+                            </Grid>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Cursor" Value="Hand" />
+                                <Trigger.EnterActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="Image"
+                                                Storyboard.TargetProperty="ScaleX"
+                                                To="1.15"
+                                                Duration="0:0:0:0.3" />
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="Image"
+                                                Storyboard.TargetProperty="ScaleY"
+                                                To="1.15"
+                                                Duration="0:0:0:0.3" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.EnterActions>
+                                <Trigger.ExitActions>
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="Image"
+                                                Storyboard.TargetProperty="ScaleX"
+                                                To="1"
+                                                Duration="0:0:0:0.3" />
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="Image"
+                                                Storyboard.TargetProperty="ScaleY"
+                                                To="1"
+                                                Duration="0:0:0:0.3" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </Trigger.ExitActions>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Button Command="{Binding DataContext.NewClickCommand, RelativeSource={RelativeSource AncestorType=ItemsControl, Mode=FindAncestor}}" CommandParameter="{Binding IInfoId}" />
+    </Grid>
+</UserControl>

@@ -1,0 +1,47 @@
+﻿<UserControl
+    x:Class="GenshenApp.Views.FailedView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:GenshenApp.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    d:DesignHeight="700"
+    d:DesignWidth="1250"
+    mc:Ignorable="d">
+    <Grid Background="#FF393B40">
+        <StackPanel Margin="100,100" Orientation="Vertical">
+            <Image
+                Width="330"
+                Margin="0,50,0,0"
+                Source="/Resources/404.png" />
+            <TextBlock
+                Margin="0,30,0,0"
+                FontSize="40"
+                Style="{StaticResource BaseTextBox}"
+                Text="网络连接出错" />
+            <StackPanel Margin="0,20" Orientation="Vertical">
+                <StackPanel.Resources>
+                    <Style TargetType="TextBlock">
+                        <Setter Property="Margin" Value="4" />
+                        <Setter Property="FontSize" Value="20" />
+                        <Setter Property="Foreground" Value="Gray" />
+                        <Setter Property="HorizontalAlignment" Value="Center" />
+                    </Style>
+                </StackPanel.Resources>
+                <TextBlock Text="可能跟温迪一起出游了吧" />
+                <TextBlock Text="可能登上天空岛也说不一定..." />
+                <TextBlock Text="可能去了很远的地方..." />
+            </StackPanel>
+            <Image Width="35" Source="/Resources/failed1.png" />
+            <Button
+                Margin="25"
+                Click="Button_Click"
+                Style="{StaticResource RightButton}">
+                <TextBlock
+                    FontSize="25"
+                    Style="{StaticResource BaseTextBox}"
+                    Text="退出程序 »" />
+            </Button>
+        </StackPanel>
+    </Grid>
+</UserControl>
