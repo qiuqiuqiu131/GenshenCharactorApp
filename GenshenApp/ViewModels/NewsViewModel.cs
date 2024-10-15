@@ -51,17 +51,24 @@ namespace GenshenApp.ViewModels
             get => currentOption;
             private set => SetProperty(ref currentOption, value);
         }
-        #endregion
-
-        private int pageIndex = 1;
 
         public DelegateCommand<string> NewsOptionChangedCommand {  get; private set; }
         public DelegateCommand MoreNewCommand {  get; private set; }
         public DelegateCommand<string> NewClickCommand {  get; private set; }
 
-        private ProgramSettingData settingData;
+        #endregion
 
-        private Dictionary<string, List<NewData>> newDatas = new Dictionary<string, List<NewData>>
+        private readonly ILoadDataService loadDataService;
+        private readonly IEventAggregator eventAggregator;
+        private readonly IProgramDataService programDataService;
+
+        private ProgramSettingData settingData 
+            => programDataService.SettingData;
+
+        private int pageIndex = 1;
+
+        private Dictionary<string, List<NewData>> newDatas 
+            = new Dictionary<string, List<NewData>>
         {
             {"最新",new()},
             {"新闻",new()},
@@ -71,17 +78,13 @@ namespace GenshenApp.ViewModels
 
         public event Action MoreDetailLoadOver;
 
-        private readonly ILoadDataService loadDataService;
-        private readonly IEventAggregator eventAggregator;
-
-        public NewsViewModel(ILoadDataService loadDataService,IEventAggregator eventAggregator)
+        public NewsViewModel(ILoadDataService loadDataService,IEventAggregator eventAggregator,IProgramDataService programDataService)
         {
             this.loadDataService = loadDataService;
             this.eventAggregator = eventAggregator;
+            this.programDataService = programDataService;
 
             eventAggregator.GetEvent<HttpFailed>().Subscribe(Free);
-
-            settingData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).SettingData;
 
             NewsOptionChangedCommand = new DelegateCommand<string>(NewsOptionChanged);
             MoreNewCommand = new DelegateCommand(MoreNew);

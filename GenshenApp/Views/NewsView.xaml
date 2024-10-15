@@ -13,9 +13,8 @@
     <Grid>
         <ScrollViewer
             x:Name="scrollView"
-            HorizontalScrollBarVisibility="Hidden"
             PreviewMouseWheel="scrollView_PreviewMouseWheel"
-            VerticalScrollBarVisibility="Hidden">
+            Style="{StaticResource BaseScrollView}">
             <StackPanel Orientation="Vertical">
                 <Grid
                     Width="1250"

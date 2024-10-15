@@ -21,24 +21,15 @@ namespace GenshenApp.ViewModels
     {
         private readonly IRegionManager regionManager;
         private readonly ILoadDataService loadDataService;
+        private readonly IProgramDataService programDataService;
+
+        private ProgramData programData
+            => programDataService.ProgramData;
+
+        private ProgramSettingData settingData
+            => programDataService.SettingData;
 
         #region Property
-        private ProgramData programData;
-        private ProgramData ProgramData
-        {
-            get => programData;
-            set
-            {
-                if (programData != value)
-                {
-                    programData = value;
-                    RaisePropertyChanged(nameof(CityDatas));
-                }
-            }
-        }
-
-        private ProgramSettingData settingData;
-
         // 主界面Video
         public string HomeVideoUrl => settingData.HomeVideoUrl;
         
@@ -75,19 +66,17 @@ namespace GenshenApp.ViewModels
         public DelegateCommand<string> HomeNewClickCommand { get; private set; }
         #endregion
 
-        public HomeViewModel(IRegionManager regionManager,ILoadDataService loadDataService) 
+        public HomeViewModel(IRegionManager regionManager,ILoadDataService loadDataService,IProgramDataService programDataService) 
         {
             this.regionManager = regionManager;
             this.loadDataService = loadDataService;
+            this.programDataService = programDataService;
 
             ItemClickCommand = new DelegateCommand<CityData>(ItemClick);
             NewsDetailClickCommand = new DelegateCommand(NewsDetailClick);
             NewsSelectionChangedCommand = new DelegateCommand<string>(NewsSelectionChanged);
             NewClickCommand = new DelegateCommand<string>(NewClick);
             HomeNewClickCommand = new DelegateCommand<string>(HomeNewClick);
-
-            settingData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).SettingData;
-            ProgramData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).ProgramData;
         }
 
         private void NewsSelectionChanged(string obj)

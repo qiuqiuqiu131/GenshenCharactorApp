@@ -60,14 +60,12 @@ namespace GenshenApp.Views
 
         private void scrollView_PreviewMouseWheel(object sender, MouseWheelEventArgs e)
         {
-
             double dis;
             if (e.Delta > 0)
                 dis = -350;
             else
                 dis = 350;
             SetScrollViewerOffset(scrollView.VerticalOffset + dis);
-            //scrollView.ScrollToVerticalOffset(scrollView.VerticalOffset + dis);
             e.Handled = true;
         }
 

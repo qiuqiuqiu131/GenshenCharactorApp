@@ -9,28 +9,26 @@ using GenshenApp.Helper;
 
 namespace GenshenApp.Common
 {
-    public class CharactorFullData
+    public class CharactorFullData:IDisposable
     {
-        public string Name { get; set; }
-        public string CV_cn {  get; set; }
-        public string CV_jp { get; set; }
-        public string Content {  get; set; }
+        private CharactorData charactor;
+
+        public string Name => charactor.Name;
+        public string CV_cn => charactor.CV_cn;
+        public string CV_jp => charactor.CV_jp;
+        public string Content => charactor.Content;
+        public List<string> Audios_cn => charactor.Audios_cn;
+        public List<string> Audios_jp => charactor.Audios_jp;
+
         public BitmapImage Icon { get; set; }
         public BitmapImage CharactorImage { get; set; }
         public BitmapImage NameImage { get; set; }
         public BitmapImage PropertyImage { get; set; }
         public BitmapImage LinesImage { get; set; }
-        public List<string> Audios_cn { get; set; }
-        public List<string> Audios_jp { get; set; }
 
         public async Task Init(CharactorData charactorData,Dictionary<string,BitmapImage> images)
         {
-            Name = charactorData.Name;
-            CV_cn = charactorData.CV_cn;
-            CV_jp = charactorData.CV_jp;
-            Content = charactorData.Content;
-            Audios_cn = charactorData.Audios_cn;
-            Audios_jp = charactorData.Audios_jp;
+            charactor = charactorData;
 
             List<Task> tasks = new List<Task> {
                 HttpHelper.GetImageAsync(charactorData.Icon)
@@ -53,10 +51,23 @@ namespace GenshenApp.Common
                         {
                             if (!images.ContainsKey(charactorData.PropertyImage))
                                 images.Add(charactorData.PropertyImage, PropertyImage);
+                            else
+                                PropertyImage = images[charactorData.PropertyImage];
                         }
                     }));
             }
             await Task.WhenAll(tasks);
+            tasks.Clear();
+        }
+
+        public void Dispose()
+        {
+            charactor = null;
+            Icon = null;
+            CharactorImage = null;
+            NameImage = null;
+            PropertyImage = null;
+            LinesImage = null;
         }
     }
 }

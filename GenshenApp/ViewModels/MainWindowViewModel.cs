@@ -9,6 +9,7 @@ using GenshenApp.Helper;
 using GenshenApp.Services.Interface;
 using Prism.Regions;
 using System.Threading.Tasks;
+using System;
 
 namespace GenshenApp.ViewModels
 {
@@ -22,17 +23,12 @@ namespace GenshenApp.ViewModels
         }
 
         private readonly IRegionManager regionManager;
-        private readonly ILoadDataService loadDataService;
+        private readonly IProgramDataService programDataService;
 
-        public ProgramSettingData SettingData { get; set; }
-        public List<NavigateBar> NavigateBars => SettingData.NavigateBar;
+        private ProgramSettingData settingData 
+            => programDataService.SettingData;
 
-        private ProgramData programData = new();
-        public ProgramData ProgramData
-        {
-            get => programData;
-            set => SetProperty(ref programData, value);
-        }
+        public List<NavigateBar> NavigateBars => settingData.NavigateBar;
 
         public DelegateCommand<NavigateBar> SelectionChangedCommand { get; private set; }
         public DelegateCommand<string> ClickCommand { get; private set; }
@@ -44,47 +40,13 @@ namespace GenshenApp.ViewModels
             set => SetProperty(ref selectIndex, value);
         }
 
-        public MainWindowViewModel(IRegionManager regionManager,ILoadDataService loadDataService)
+        public MainWindowViewModel(IRegionManager regionManager,IProgramDataService programDataService)
         {
             this.regionManager = regionManager;
-            this.loadDataService = loadDataService;
+            this.programDataService = programDataService;
 
             SelectionChangedCommand = new DelegateCommand<NavigateBar>(SelectionChanged);
             ClickCommand = new DelegateCommand<string>(Click);
-
-            LoadSettingData();
-        }
-
-        // 加载配置文件
-        private async void LoadSettingData()
-        {
-            string data = File.ReadAllText("ProgramSetting.json");
-            SettingData = JsonConvert.DeserializeObject<ProgramSettingData>(data);
-
-            var tasks = new List<Task>{
-                LoadCityData(),
-                LoadWorldData()
-            };
-
-            // 加载结束启动程序
-            await Task.WhenAll(tasks);
-            regionManager.Regions["MainViewRegion"].RequestNavigate("HomeView");
-        }
-
-        // 加载区域角色数据
-        private async Task LoadCityData()
-        {
-            var result = await loadDataService.LoadJsonBaseData<CityData>(SettingData.CityDataUrl);
-            foreach (var cityData in result)
-                cityData.CharactorData = SettingData.CityData[cityData.Name];
-            ProgramData.CityData = result;
-        }
-
-        // 加载区域数据
-        private async Task LoadWorldData()
-        {
-            var result = await loadDataService.LoadJsonBaseData<WorldData>(SettingData.WorldDataUrl);
-            ProgramData.WorldData = result;
         }
 
         private void SelectionChanged(NavigateBar navigateBar)

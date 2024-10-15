@@ -53,17 +53,17 @@ namespace GenshenApp.Helper
         {
             using var response = await GetResponseAsync(url);
             var data = await response.Content.ReadAsByteArrayAsync();
-            using var stream = new MemoryStream(data);
-
             var image = new BitmapImage();
-            image.BeginInit();
-            image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
-            image.CacheOption = BitmapCacheOption.OnLoad;
-            image.UriSource = null;
-            image.StreamSource = stream;
-            image.EndInit();
-            image.Freeze();
-
+            using (var stream = new MemoryStream(data))
+            {
+                image.BeginInit();
+                image.CreateOptions = BitmapCreateOptions.PreservePixelFormat;
+                image.CacheOption = BitmapCacheOption.OnLoad;
+                image.UriSource = null;
+                image.StreamSource = stream;
+                image.EndInit();
+                image.Freeze();
+            };
             return image;
         }
 

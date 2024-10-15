@@ -11,6 +11,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Windows.Controls;
 using Prism.Ioc;
 using System.Runtime.InteropServices;
+using GenshenApp.Services.Interface;
 
 namespace GenshenApp.Views
 {
@@ -21,7 +22,7 @@ namespace GenshenApp.Views
     {
         private readonly IContainerProvider container;
         private readonly IEventAggregator eventAggregator;
-
+        private readonly IProgramDataService programDataService;
         private readonly MediaPlayer Bg1 = new MediaPlayer();
         private readonly MediaPlayer Bg2 = new MediaPlayer();
 
@@ -45,11 +46,13 @@ namespace GenshenApp.Views
         #endregion
 
         public MainWindow(IContainerProvider container,
-            IEventAggregator eventAggregator)
+            IEventAggregator eventAggregator,IProgramDataService programDataService)
         {
             InitializeComponent();
+            
             this.container = container;
             this.eventAggregator = eventAggregator;
+            this.programDataService = programDataService;
 
             eventAggregator.GetEvent<InitOver>().Subscribe(InitOver);
             eventAggregator.GetEvent<HttpFailed>().Subscribe(HttpFailed);
@@ -77,6 +80,7 @@ namespace GenshenApp.Views
             PlayAudio();
             Storyboard storyboard = new Storyboard();
             DoubleAnimation anim = new DoubleAnimation();
+            anim.FillBehavior = FillBehavior.Stop;
             anim.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 300));
             Storyboard.SetTarget(anim, LoadingContent);
             Storyboard.SetTargetProperty(anim, new PropertyPath("Opacity"));
@@ -88,6 +92,8 @@ namespace GenshenApp.Views
             {
                 LoadingContent.Visibility = Visibility.Collapsed;
                 LoadingContent.Content = null;
+                storyboard = null;
+                anim = null;
             };
             storyboard.Begin();
         }
@@ -95,7 +101,7 @@ namespace GenshenApp.Views
         #region Audio
         private void PlayAudio()
         {
-            var url1 = ((DataContext as MainWindowViewModel)!).SettingData.Bg1Url;
+            var url1 = programDataService.SettingData.Bg1Url;
             Bg1.Open(new Uri(url1, UriKind.Absolute));
             Bg1.Volume = 1;
             Bg1.Play();
@@ -105,7 +111,7 @@ namespace GenshenApp.Views
                 Bg1.Play();
             };
 
-            var url2 = ((DataContext as MainWindowViewModel)!).SettingData.Bg2Url;
+            var url2 = programDataService.SettingData.Bg2Url;
             Bg2.Open(new Uri(url2, UriKind.Absolute));
             Bg2.Volume = 1;
             Bg2.Play();
@@ -167,11 +173,6 @@ namespace GenshenApp.Views
         public void Minimized()
         {
             this.WindowState = WindowState.Minimized;
-        }
-
-        private void instance_StateChanged(object sender, EventArgs e)
-        {
-            
         }
     }
 }

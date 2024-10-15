@@ -13,31 +13,23 @@ using Prism.Events;
 using Prism.Commands;
 using Prism.Ioc;
 using GenshenApp.UserControls.Dialog;
+using GenshenApp.Services.Interface;
 
 namespace GenshenApp.ViewModels
 {
     public class WorldViewModel:BindableBase
     {
-        private ProgramData programData;
-        private ProgramData ProgramData
-        {
-            get => programData;
-            set
-            {
-                if(programData != value)
-                {
-                    programData = value;
-                    RaisePropertyChanged(nameof(WorldDatas));
-                }
-            }
-        }
-
-        private ProgramSettingData settingData;
-
         private readonly IEventAggregator eventAggregator;
         private readonly IContainerProvider container;
+        private readonly IProgramDataService programDataService;
 
-        public List<WorldData> WorldDatas => ProgramData.WorldData;
+        private ProgramData programData 
+            => programDataService.ProgramData;
+
+        private ProgramSettingData settingData 
+            => programDataService.SettingData;
+
+        public List<WorldData> WorldDatas => programData.WorldData;
 
         private List<String> worlds;
         public List<String> Worlds => worlds;
@@ -58,13 +50,11 @@ namespace GenshenApp.ViewModels
         public DelegateCommand<WorldData> ShowDetailCommand { get; private set; }
 
         public WorldViewModel(IEventAggregator eventAggregator,
-            IContainerProvider container)
+            IContainerProvider container,IProgramDataService programDataService)
         {
             this.eventAggregator = eventAggregator;
             this.container = container;
-
-            settingData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).SettingData;
-            ProgramData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).ProgramData;
+            this.programDataService = programDataService;
 
             worlds = new List<String>();
             worlds.Add("首页");

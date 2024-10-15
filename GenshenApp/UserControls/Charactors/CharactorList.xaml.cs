@@ -23,14 +23,29 @@ namespace GenshenApp.UserControls
     /// </summary>
     public partial class CharactorList : UserControl
     {
+        private bool isMoving = false;
+        private Storyboard sb = new();
+        private DoubleAnimation anim = new();
+        private ScrollViewer scrollViewer;
+
         public CharactorList()
         {
             InitializeComponent();
+
+            Loaded += CharactorList_Loaded;
+        }
+
+        private void CharactorList_Loaded(object sender, RoutedEventArgs e)
+        {
+            scrollViewer = GetVisualChild<ScrollViewer>(charactorList);
+            InitStoryBoard(scrollViewer);
         }
 
         private void CharactorList_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (charactorList.SelectedItem == null || charactorList.Items.Count == 0) return;
+            if (charactorList.SelectedItem == null || charactorList.Items.Count == 0 || isMoving) return;
+
+            isMoving = true;
 
             double viewWidth;
             double itemWidth;
@@ -39,28 +54,24 @@ namespace GenshenApp.UserControls
             var item = (ListBoxItem)charactorList.ItemContainerGenerator.ContainerFromIndex(0);
             itemWidth = item.ActualWidth;
 
-            var scrollView = GetVisualChild<ScrollViewer>(charactorList);
-            viewWidth = scrollView.ActualWidth;
+            viewWidth = scrollViewer.ActualWidth;
 
             double itemPosX = charactorList.SelectedIndex * itemWidth;
 
             double horOffset = itemPosX + itemWidth - viewWidth / 2;
-            GetStoryBoard(scrollView,horOffset).Begin();
+            
+            anim.To = horOffset;
+            sb.Begin();
         }
 
-        private Storyboard GetStoryBoard(DependencyObject target,double horOffset)
+        private void InitStoryBoard(DependencyObject target)
         {
-            var horOffsetAnim = new DoubleAnimation();
-            var sb = new Storyboard();
-
-            horOffsetAnim.To = horOffset;
-            horOffsetAnim.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
-            horOffsetAnim.EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut };
-            Storyboard.SetTarget(horOffsetAnim, target);
-            Storyboard.SetTargetProperty(horOffsetAnim, new PropertyPath("(ext:ScrollViewExtension.MyHorizontalOffset)"));
-            sb.Children.Add(horOffsetAnim);
-
-            return sb;
+            anim.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
+            anim.EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut };
+            Storyboard.SetTarget(anim, target);
+            Storyboard.SetTargetProperty(anim, new PropertyPath("(ext:ScrollViewExtension.MyHorizontalOffset)"));
+            sb.Children.Add(anim);
+            sb.Completed += (_,_) => isMoving = false;
         }
 
         private T GetVisualChild<T>(DependencyObject parent) where T : DependencyObject

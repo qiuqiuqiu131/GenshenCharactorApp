@@ -49,6 +49,7 @@ namespace GenshenApp.UserControls
         private void StartAnim()
         {
             cts.Cancel();
+            cts.Dispose();
             cts = new CancellationTokenSource();
             PlayAnim(cts.Token);
         }
@@ -63,9 +64,7 @@ namespace GenshenApp.UserControls
                     return;
 
                 isMoving = true;
-                currentIndex++;
-                if (currentIndex == 4)
-                    currentIndex = 0;
+                currentIndex = (currentIndex + 1) % 4;
                 SetScrollViewerOffset(currentIndex * 550);
                 Listbox.SelectedIndex = currentIndex;
 

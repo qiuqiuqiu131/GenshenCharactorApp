@@ -24,23 +24,17 @@ namespace GenshenApp.ViewModels
 {
     public class CharactorViewModel:BindableBase,INavigationAware
     {
+        private readonly ILoadDataService loadDataService;
+        private readonly IEventAggregator eventAggregator;
+        private readonly IProgramDataService programDataService;
+
+        public ProgramData programData
+            => programDataService.ProgramData;
+
+        private ProgramSettingData settingData
+            => programDataService.SettingData;
+
         #region Property
-        private ProgramData programData;
-        public ProgramData ProgramData
-        {
-            get => programData;
-            set
-            {
-                if (programData != value)
-                {
-                    programData = value;
-                    RaisePropertyChanged(nameof(programData));
-                }
-            }
-        }
-
-        private ProgramSettingData settingData;
-
         public List<CityData> CityDatas => programData.CityData;
 
 
@@ -154,37 +148,18 @@ namespace GenshenApp.ViewModels
         public DelegateCommand<string> ArrowCommand { get; private init; }
         #endregion
 
-        private readonly ILoadDataService loadDataService;
-        private readonly IEventAggregator eventAggregator;
-        private bool isLoading;
-
         public event Action CharactorChanged;
         public event Action NavigationChanged;
 
-        public CharactorViewModel(ILoadDataService loadDataService,IEventAggregator eventAggregator)
+        public CharactorViewModel(ILoadDataService loadDataService,IEventAggregator eventAggregator,IProgramDataService programDataService)
         {
             this.loadDataService = loadDataService;
             this.eventAggregator = eventAggregator;
+            this.programDataService = programDataService;
 
             eventAggregator.GetEvent<HttpFailed>().Subscribe(Free);
 
             ArrowCommand = new DelegateCommand<string>(Arrow);
-
-            settingData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).SettingData;
-            ProgramData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).ProgramData;
-        }
-
-        private void InitAllData()
-        {
-            foreach (var city in CityDatas)
-            {
-                List<Task<Action>> tasks = new List<Task<Action>>
-                {
-                    LoadCityCharactor(city.CharactorData),
-                    LoadBackground1(city.BackgroundUrl1),
-                    LoadBackground2(city.BackgroundUrl2)
-                };
-            }
         }
 
         private async void UpdateCharactor()
@@ -196,7 +171,9 @@ namespace GenshenApp.ViewModels
             {
                 var chara = new CharactorFullData();
                 await chara.Init(selectedChara, propertyImages);
+                CharactorData?.Dispose();
                 CharactorData = chara;
+                GC.Collect();
             }
             else
             {
@@ -221,8 +198,6 @@ namespace GenshenApp.ViewModels
         // 更换区域
         private async void SelectCity(CityData cityData)
         {
-            isLoading = true;
-
             List<Task<Action>> tasks = new List<Task<Action>>
             {
                 LoadCityCharactor(cityData.CharactorData),
@@ -234,8 +209,7 @@ namespace GenshenApp.ViewModels
 
             foreach (var task in tasks)
                 task.Result?.Invoke();
-
-            isLoading = false;
+            tasks.Clear();
         }
 
         // 加载区域角色

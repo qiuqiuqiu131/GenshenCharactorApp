@@ -121,10 +121,7 @@
         </Style>
     </UserControl.Resources>
     <Grid>
-        <ScrollViewer
-            x:Name="scrollView"
-            HorizontalScrollBarVisibility="Hidden"
-            VerticalScrollBarVisibility="Hidden">
+        <ScrollViewer x:Name="scrollView" Style="{StaticResource BaseScrollView}">
             <StackPanel Orientation="Vertical">
                 <Grid Width="1250" Height="700">
                     <Image

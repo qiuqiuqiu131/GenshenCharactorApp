@@ -18,8 +18,8 @@
     Background="Transparent"
     FontFamily="黑体"
     Icon="/Resources/favicon.ico"
+    RenderOptions.BitmapScalingMode="HighQuality"
     ResizeMode="CanResize"
-    StateChanged="instance_StateChanged"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">

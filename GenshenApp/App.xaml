@@ -74,5 +74,13 @@
                 </Setter.Value>
             </Setter>
         </Style>
+
+        <Style x:Key="BaseScrollView" TargetType="ScrollViewer">
+            <Setter Property="HorizontalScrollBarVisibility" Value="Hidden" />
+            <Setter Property="VerticalScrollBarVisibility" Value="Hidden" />
+            <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
+            <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling" />
+            <Setter Property="IsDeferredScrollingEnabled" Value="True" />
+        </Style>
     </Application.Resources>
 </prism:PrismApplication>

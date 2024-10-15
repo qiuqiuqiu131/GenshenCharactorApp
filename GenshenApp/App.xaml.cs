@@ -7,6 +7,7 @@ using GenshenApp.ViewModels;
 using GenshenApp.Views;
 using GenshenApp.UserControls;
 using GenshenApp.UserControls.Dialog;
+using System.Windows.Media;
 
 namespace GenshenApp
 {
@@ -18,6 +19,18 @@ namespace GenshenApp
         protected override Window CreateShell()
         {
             return Container.Resolve<MainWindow>();
+        }
+
+        protected override async void OnInitialized()
+        {
+            var regionManager = Container.Resolve<IRegionManager>();
+            var programDataService = Container.Resolve<IProgramDataService>();
+
+            programDataService.LoadSettingData();
+            base.OnInitialized();
+
+            await programDataService.LoadProgramData();
+            regionManager.Regions["MainViewRegion"].RequestNavigate("HomeView");
         }
 
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
@@ -34,6 +47,7 @@ namespace GenshenApp
             containerRegistry.RegisterForNavigation<WorldDetailView>();
 
             containerRegistry.Register<ILoadDataService, LoadDataService>();
+            containerRegistry.RegisterSingleton<IProgramDataService, ProgramDataService>();
         }
     }
 }
