@@ -16,9 +16,10 @@
     prism:ViewModelLocator.AutoWireViewModel="True"
     AllowsTransparency="True"
     Background="Transparent"
-    FontFamily="微软雅黑"
-    Icon="https://ys.mihoyo.com/main/favicon.ico"
-    ResizeMode="CanMinimize"
+    FontFamily="黑体"
+    Icon="/Resources/favicon.ico"
+    ResizeMode="CanResize"
+    StateChanged="instance_StateChanged"
     WindowStartupLocation="CenterScreen"
     WindowStyle="None"
     mc:Ignorable="d">

@@ -11,9 +11,11 @@
     <None Remove="Resources\AudioPlay.png" />
     <None Remove="Resources\AudioPlaying.gif" />
     <None Remove="Resources\CityArrow.png" />
+    <None Remove="Resources\Close.png" />
     <None Remove="Resources\content.png" />
     <None Remove="Resources\failed1.png" />
     <None Remove="Resources\failed2.png" />
+    <None Remove="Resources\favicon.ico" />
     <None Remove="Resources\light.png" />
     <None Remove="Resources\Love.png" />
     <None Remove="Resources\Music.png" />
@@ -25,6 +27,7 @@
     <None Remove="Resources\WorldArrow.png" />
     <None Remove="Resources\WorldArrowBack.png" />
     <None Remove="Resources\WorldSlide.png" />
+    <None Remove="Resources\WorldTitle.png" />
     <None Remove="Resources\X.png" />
     <None Remove="Resources\year.png" />
   </ItemGroup>
@@ -47,6 +50,9 @@
     <Content Include="Resources\CityArrow.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
+    <Content Include="Resources\Close.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Content Include="Resources\content.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
@@ -54,6 +60,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\failed2.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\favicon.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\light.png">
@@ -89,6 +98,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\Top.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Resources\WorldTitle.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
     <Content Include="Resources\X.png">

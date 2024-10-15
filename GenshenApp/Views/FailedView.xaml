@@ -9,6 +9,97 @@
     d:DesignWidth="1250"
     mc:Ignorable="d">
     <Grid Background="#FF393B40">
+        <Grid Margin="10" ClipToBounds="True">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="40" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="40" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="40" />
+            </Grid.RowDefinitions>
+            <Image
+                Width="80"
+                Height="80"
+                Source="/Resources/failed2.png" />
+            <Grid Grid.Column="2" ClipToBounds="True">
+                <Image
+                    Grid.Column="2"
+                    Width="80"
+                    Height="80"
+                    Margin="-40,0,0,0"
+                    Source="/Resources/failed2.png" />
+            </Grid>
+            <Grid Grid.Row="2" ClipToBounds="True">
+                <Image
+                    Grid.Column="2"
+                    Width="80"
+                    Height="80"
+                    Margin="0,-40,0,0"
+                    Source="/Resources/failed2.png" />
+            </Grid>
+            <Grid
+                Grid.Row="2"
+                Grid.Column="2"
+                ClipToBounds="True">
+                <Image
+                    Grid.Column="2"
+                    Width="80"
+                    Height="80"
+                    Margin="-40,-40,0,0"
+                    Source="/Resources/failed2.png" />
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Rectangle
+                    Height="2"
+                    Margin="0,-25.5,0,0"
+                    Fill="Gray"
+                    Opacity="0.25" />
+                <Rectangle
+                    Height="2.7"
+                    VerticalAlignment="Top"
+                    Fill="#FFAAAAAA"
+                    Opacity="0.3" />
+            </Grid>
+            <Grid Grid.Row="2" Grid.Column="1">
+                <Rectangle
+                    Height="2"
+                    Margin="0,25.5,0,0"
+                    Fill="Gray"
+                    Opacity="0.25" />
+                <Rectangle
+                    Height="2.7"
+                    VerticalAlignment="Bottom"
+                    Fill="#FFAAAAAA"
+                    Opacity="0.3" />
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="2">
+                <Rectangle
+                    Width="2"
+                    Margin="25.5,0,0,0"
+                    Fill="Gray"
+                    Opacity="0.25" />
+                <Rectangle
+                    Width="2.7"
+                    HorizontalAlignment="Right"
+                    Fill="#FFAAAAAA"
+                    Opacity="0.3" />
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="0">
+                <Rectangle
+                    Width="2"
+                    Margin="-25.5,0,0,0"
+                    Fill="Gray"
+                    Opacity="0.25" />
+                <Rectangle
+                    Width="2.7"
+                    HorizontalAlignment="Left"
+                    Fill="#FFAAAAAA"
+                    Opacity="0.3" />
+            </Grid>
+        </Grid>
         <StackPanel Margin="100,100" Orientation="Vertical">
             <Image
                 Width="330"

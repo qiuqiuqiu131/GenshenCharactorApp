@@ -62,7 +62,7 @@ namespace GenshenApp.UserControls
 
         private void Grid_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            eventAggregator.GetEvent<DialogHide>().Publish();
+            //eventAggregator.GetEvent<DialogHide>().Publish();
         }
     }
 }

@@ -192,10 +192,9 @@ namespace GenshenApp.ViewModels
             if (selectedChara == null)
                 return;
 
-            var chara = new CharactorFullData();
-
             if(settingData.LowMemoryMode)
             {
+                var chara = new CharactorFullData();
                 await chara.Init(selectedChara, propertyImages);
                 CharactorData = chara;
             }
@@ -205,13 +204,15 @@ namespace GenshenApp.ViewModels
                     CharactorData = charactors[selectedChara.Name];
                 else
                 {
+                    var chara = new CharactorFullData();
                     await chara.Init(selectedChara, propertyImages);
-                    CharactorData = chara;
                     lock (charactors)
                     {
                         if (!charactors.ContainsKey(chara.Name))
                             charactors.Add(chara.Name, chara);
+                        else chara = null;
                     }
+                    CharactorData = charactors[selectedChara.Name];
                 }
             }
             CharactorChanged?.Invoke();
@@ -252,12 +253,15 @@ namespace GenshenApp.ViewModels
                     {
                         if(!charaListDatas.ContainsKey(ChanId))
                             charaListDatas.Add(ChanId, results);
+                       else
+                            results = charaListDatas[ChanId];
                     }
                 }
             }
             else
                 results = await loadDataService.LoadJsonBaseData<CharactorData>(ChanId);
 
+            // 开启线程加载city中的角色数据
             if(!settingData.LowMemoryMode)
             {
                 foreach (var chara in results)
@@ -272,6 +276,8 @@ namespace GenshenApp.ViewModels
                         {
                             if (!charactors.ContainsKey(fChara.Name))
                                 charactors.Add(fChara.Name, fChara);
+                            else
+                                fChara = null;
                         }
                     }
                     );
@@ -298,7 +304,9 @@ namespace GenshenApp.ViewModels
                     bitmapImage = await HttpHelper.GetImageAsync(url);
                     lock(backgroundImages){
                         if(!backgroundImages.ContainsKey(url))
-                        backgroundImages.Add(url, bitmapImage);
+                            backgroundImages.Add(url, bitmapImage);
+                        else
+                            bitmapImage = backgroundImages[url];
                     }
                 }
             }
@@ -326,6 +334,8 @@ namespace GenshenApp.ViewModels
                     {
                         if (!backgroundImages.ContainsKey(url))
                             backgroundImages.Add(url, bitmapImage);
+                        else
+                            bitmapImage = backgroundImages[url];
                     }
                 }
             }
@@ -356,18 +366,17 @@ namespace GenshenApp.ViewModels
             SelectedChara = CharaList[index];
         }
 
-
         #region INavigationAware
         public bool IsNavigationTarget(NavigationContext navigationContext) => true;
         public void OnNavigatedFrom(NavigationContext navigationContext)
         {
+            if (settingData.LowMemoryMode)
+                Free();
             NavigationChanged?.Invoke();
         }
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            ProgramData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).ProgramData;
-
             SelectedCity = CityDatas[0];
 
             var param = navigationContext.Parameters;

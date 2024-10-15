@@ -8,6 +8,7 @@ using GenshenApp.Common.JosnData;
 using GenshenApp.Helper;
 using GenshenApp.Services.Interface;
 using Prism.Regions;
+using System.Threading.Tasks;
 
 namespace GenshenApp.ViewModels
 {
@@ -55,16 +56,23 @@ namespace GenshenApp.ViewModels
         }
 
         // 加载配置文件
-        private void LoadSettingData()
+        private async void LoadSettingData()
         {
             string data = File.ReadAllText("ProgramSetting.json");
             SettingData = JsonConvert.DeserializeObject<ProgramSettingData>(data);
 
-            LoadCityData();
-            LoadWorldData();
+            var tasks = new List<Task>{
+                LoadCityData(),
+                LoadWorldData()
+            };
+
+            // 加载结束启动程序
+            await Task.WhenAll(tasks);
+            regionManager.Regions["MainViewRegion"].RequestNavigate("HomeView");
         }
 
-        private async void LoadCityData()
+        // 加载区域角色数据
+        private async Task LoadCityData()
         {
             var result = await loadDataService.LoadJsonBaseData<CityData>(SettingData.CityDataUrl);
             foreach (var cityData in result)
@@ -72,7 +80,8 @@ namespace GenshenApp.ViewModels
             ProgramData.CityData = result;
         }
 
-        private async void LoadWorldData()
+        // 加载区域数据
+        private async Task LoadWorldData()
         {
             var result = await loadDataService.LoadJsonBaseData<WorldData>(SettingData.WorldDataUrl);
             ProgramData.WorldData = result;

@@ -6,6 +6,7 @@ using GenshenApp.Services.Interface;
 using GenshenApp.ViewModels;
 using GenshenApp.Views;
 using GenshenApp.UserControls;
+using GenshenApp.UserControls.Dialog;
 
 namespace GenshenApp
 {
@@ -19,14 +20,6 @@ namespace GenshenApp
             return Container.Resolve<MainWindow>();
         }
 
-        protected override void OnInitialized()
-        {
-            base.OnInitialized();
-
-            var regionManager = Container.Resolve<IRegionManager>();
-            regionManager.Regions["MainViewRegion"].RequestNavigate("HomeView");
-        }
-
         protected override void RegisterTypes(IContainerRegistry containerRegistry)
         {
             containerRegistry.RegisterForNavigation<HomeView, HomeViewModel>();
@@ -38,6 +31,7 @@ namespace GenshenApp
 
             containerRegistry.RegisterForNavigation<MyDialogView>();
             containerRegistry.RegisterForNavigation<YearView>();
+            containerRegistry.RegisterForNavigation<WorldDetailView>();
 
             containerRegistry.Register<ILoadDataService, LoadDataService>();
         }

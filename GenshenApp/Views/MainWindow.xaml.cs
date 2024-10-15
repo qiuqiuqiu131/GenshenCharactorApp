@@ -10,6 +10,7 @@ using System.Windows.Media.Animation;
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Windows.Controls;
 using Prism.Ioc;
+using System.Runtime.InteropServices;
 
 namespace GenshenApp.Views
 {
@@ -18,13 +19,30 @@ namespace GenshenApp.Views
     /// </summary>
     public partial class MainWindow
     {
-        private readonly MediaPlayer Bg1 = new MediaPlayer();
-        private readonly MediaPlayer Bg2 = new MediaPlayer();
-
         private readonly IContainerProvider container;
         private readonly IEventAggregator eventAggregator;
 
+        private readonly MediaPlayer Bg1 = new MediaPlayer();
+        private readonly MediaPlayer Bg2 = new MediaPlayer();
+
         private MyDialogView dialogView;
+
+        #region 任务栏
+        [DllImport("user32.dll")]
+        private static extern IntPtr FindWindow(string lpClassName, string lpWindowName);
+
+        [DllImport("user32.dll")]
+        private static extern bool GetWindowRect(IntPtr hWnd, out RECT lpRect);
+
+        [StructLayout(LayoutKind.Sequential)]
+        public struct RECT
+        {
+            public int Left;
+            public int Top;
+            public int Right;
+            public int Bottom;
+        }
+        #endregion
 
         public MainWindow(IContainerProvider container,
             IEventAggregator eventAggregator)
@@ -136,11 +154,6 @@ namespace GenshenApp.Views
             GC.Collect();
         }
 
-        public void Minimized()
-        {
-            WindowState = WindowState.Minimized;
-        }
-
         public void Quit()
         {
             var story = (Storyboard)this.Resources["HideWindow"];
@@ -149,6 +162,16 @@ namespace GenshenApp.Views
                 story.Completed += delegate { Application.Current.Shutdown(); };
                 story.Begin(this);
             }
+        }
+
+        public void Minimized()
+        {
+            this.WindowState = WindowState.Minimized;
+        }
+
+        private void instance_StateChanged(object sender, EventArgs e)
+        {
+            
         }
     }
 }

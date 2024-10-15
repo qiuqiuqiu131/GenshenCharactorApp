@@ -10,10 +10,13 @@ using GenshenApp.Common;
 using GenshenApp.Common.JosnData;
 using GenshenApp.Events;
 using Prism.Events;
+using Prism.Commands;
+using Prism.Ioc;
+using GenshenApp.UserControls.Dialog;
 
 namespace GenshenApp.ViewModels
 {
-    public class WorldViewModel:BindableBase,INavigationAware
+    public class WorldViewModel:BindableBase
     {
         private ProgramData programData;
         private ProgramData ProgramData
@@ -30,7 +33,10 @@ namespace GenshenApp.ViewModels
         }
 
         private ProgramSettingData settingData;
-        
+
+        private readonly IEventAggregator eventAggregator;
+        private readonly IContainerProvider container;
+
         public List<WorldData> WorldDatas => ProgramData.WorldData;
 
         private List<String> worlds;
@@ -49,8 +55,14 @@ namespace GenshenApp.ViewModels
             }
         }
 
-        public WorldViewModel()
+        public DelegateCommand<WorldData> ShowDetailCommand { get; private set; }
+
+        public WorldViewModel(IEventAggregator eventAggregator,
+            IContainerProvider container)
         {
+            this.eventAggregator = eventAggregator;
+            this.container = container;
+
             settingData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).SettingData;
             ProgramData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).ProgramData;
 
@@ -58,20 +70,15 @@ namespace GenshenApp.ViewModels
             worlds.Add("首页");
             foreach(var item in WorldDatas) 
                 worlds.Add(item.Name);
+
+            ShowDetailCommand = new DelegateCommand<WorldData>(ShowDetail);
         }
 
-        #region INavigationAware
-        public void OnNavigatedTo(NavigationContext navigationContext)
+        private void ShowDetail(WorldData worldData)
         {
-            ProgramData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).ProgramData;
+            var obj = container.Resolve<WorldDetailView>();
+            obj.DataContext = worldData;
+            eventAggregator.GetEvent<DialogShow>().Publish(obj);
         }
-
-        public bool IsNavigationTarget(NavigationContext navigationContext) => true;
-
-        public void OnNavigatedFrom(NavigationContext navigationContext)
-        {
-            
-        }
-        #endregion
     }
 }

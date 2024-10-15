@@ -16,7 +16,16 @@ namespace GenshenApp.Common.JosnData
 
         public string Content => GetContent(1);
 
-        public List<WorldDetail> Detail => GetWorldDetail(4);
+        private List<WorldDetail> details = null;
+        public List<WorldDetail> Detail
+        {
+            get
+            {
+                if (details == null)
+                    details = GetWorldDetail(4);
+                return details;
+            }
+        }
 
         private string GetContent(int index = 1)
         {
@@ -40,6 +49,7 @@ namespace GenshenApp.Common.JosnData
             {
                 var data = new WorldDetail();
 
+                // Title
                 int i = value.IndexOf("<h1>");
                 if (i == -1)
                     break;
@@ -48,17 +58,18 @@ namespace GenshenApp.Common.JosnData
                 data.Title = value.Substring(0, j);
                 value = value.Substring(j + 5);
 
+                // Content
                 i = value.IndexOf("<p");
                 value = value.Substring(i + 2);
                 i = value.IndexOf(">");
                 value = value.Substring(i + 1);
                 j = value.IndexOf("</p>");
-                data.Content = value.Substring(0, j)
-                    .Replace("\n", "")
-                    .Replace("<br />", Environment.NewLine);
+                data.Content = value.Substring(0, j).
+                    Replace("<br />","");
                 value = value.Substring(j + 4);
 
-                i = value.IndexOf("src=");
+                // Image
+                i = value.IndexOf("src=\"");
                 value = value.Substring(i + 5);
                 j = value.IndexOf("\"");
                 data.Image = value.Substring(0, j);

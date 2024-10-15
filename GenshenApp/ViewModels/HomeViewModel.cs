@@ -139,8 +139,6 @@ namespace GenshenApp.ViewModels
 
         public void OnNavigatedTo(NavigationContext navigationContext)
         {
-            ProgramData = (Application.Current.MainWindow.DataContext as MainWindowViewModel).ProgramData;
-
             loadDataService.LoadJsonBaseData<NewData>(settingData.NewDataUrl, 1, 5, -1).ContinueWith(result =>
             {
                 ListItems = new ObservableCollection<NewData>(result.Result);
