@@ -174,5 +174,9 @@ namespace GenshenApp.Views
         {
             this.WindowState = WindowState.Minimized;
         }
+
+        private void instance_StateChanged(object sender, EventArgs e)
+        {
+        }
     }
 }

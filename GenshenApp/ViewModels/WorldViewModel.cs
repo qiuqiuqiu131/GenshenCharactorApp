@@ -14,6 +14,7 @@ using Prism.Commands;
 using Prism.Ioc;
 using GenshenApp.UserControls.Dialog;
 using GenshenApp.Services.Interface;
+using System.Collections.ObjectModel;
 
 namespace GenshenApp.ViewModels
 {

@@ -7,6 +7,8 @@
     <Application.Resources>
         <Style x:Key="BaseListBox" TargetType="ListBox">
             <Setter Property="Background" Value="Transparent" />
+            <Setter Property="VirtualizingPanel.IsVirtualizing" Value="True" />
+            <Setter Property="VirtualizingPanel.VirtualizationMode" Value="Recycling" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Hidden" />
             <Setter Property="ScrollViewer.HorizontalScrollBarVisibility" Value="Hidden" />

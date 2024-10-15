@@ -19,6 +19,7 @@ using GenshenApp.Services.Interface;
 using Prism.Regions;
 using Prism.Events;
 using GenshenApp.Events;
+using System.Diagnostics;
 
 namespace GenshenApp.ViewModels
 {
@@ -346,6 +347,8 @@ namespace GenshenApp.ViewModels
         {
             if (settingData.LowMemoryMode)
                 Free();
+            GC.Collect();
+
             NavigationChanged?.Invoke();
         }
 
