@@ -4,8 +4,7 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:cs="clr-namespace:GenshenApp.UserControls"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-    xmlns:data="clr-namespace:GenshenApp.Common.JosnData"
-    xmlns:local="clr-namespace:GenshenApp.UserControls.Dialog"
+    xmlns:ext="clr-namespace:GenshenApp.Extension"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     d:DataContext="data:WorldData"
     d:DesignHeight="700"
@@ -50,12 +49,18 @@
         </Button>
 
         <ScrollViewer
+            x:Name="scrollView"
             Grid.Row="1"
             Grid.Column="0"
-            Margin="13"
+            Grid.ColumnSpan="2"
+            Margin="13,13,18,13"
             HorizontalScrollBarVisibility="Hidden"
-            VerticalScrollBarVisibility="Hidden">
-            <ItemsControl ItemsSource="{Binding Detail}" Style="{StaticResource BaseItemsContorl}">
+            PreviewMouseWheel="ScrollViewer_PreviewMouseWheel"
+            Template="{StaticResource MyScrollViewer}">
+            <ItemsControl
+                Margin="0,0,75,0"
+                ItemsSource="{Binding Detail}"
+                Style="{StaticResource BaseItemsContorl}">
                 <ItemsControl.ItemTemplate>
                     <DataTemplate>
                         <cs:WorldContentView />

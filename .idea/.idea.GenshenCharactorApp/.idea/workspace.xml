@@ -8,19 +8,15 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="4ff31a86-8dba-4a66-ac30-6ea6b66773fe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/GenshenApp/ResourceDictionary/NormalStyle.xaml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/.idea.GenshenCharactorApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GenshenCharactorApp/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenApp/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/App.xaml.cs" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenApp/UserControls/TopPanel.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/TopPanel.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/App.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/App.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/UserControls/Dialog/WorldDetailView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Dialog/WorldDetailView.xaml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
-  </component>
-  <component name="DpaMonitoringSettings">
-    <option name="autoShow" value="false" />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -42,7 +38,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
-    ".NET Project.GenshenCharactorApp.executor": "Run",
+    ".NET Project.GenshenCharactorApp.executor": "Debug",
     "ASKED_ADD_EXTERNAL_FILES": "true",
     "ASKED_SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
@@ -92,6 +88,7 @@
       <updated>1728902617886</updated>
       <workItem from="1728902620292" duration="2829000" />
       <workItem from="1728914050727" duration="369000" />
+      <workItem from="1729836024940" duration="2777000" />
     </task>
     <servers />
   </component>
