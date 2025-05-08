@@ -27,6 +27,7 @@ namespace GenshenApp.ViewModels
     {
         private readonly ILoadDataService loadDataService;
         private readonly IEventAggregator eventAggregator;
+        private readonly IBitmapImageManager bitmapImageManager;
         private readonly IProgramDataService programDataService;
 
         public ProgramData programData
@@ -152,10 +153,13 @@ namespace GenshenApp.ViewModels
         public event Action CharactorChanged;
         public event Action NavigationChanged;
 
-        public CharactorViewModel(ILoadDataService loadDataService,IEventAggregator eventAggregator,IProgramDataService programDataService)
+        public CharactorViewModel(ILoadDataService loadDataService,IEventAggregator eventAggregator,
+            IBitmapImageManager bitmapImageManager,
+            IProgramDataService programDataService)
         {
             this.loadDataService = loadDataService;
             this.eventAggregator = eventAggregator;
+            this.bitmapImageManager = bitmapImageManager;
             this.programDataService = programDataService;
 
             eventAggregator.GetEvent<HttpFailed>().Subscribe(Free);
@@ -170,8 +174,7 @@ namespace GenshenApp.ViewModels
 
             if(settingData.LowMemoryMode)
             {
-                var chara = new CharactorFullData();
-                await chara.Init(selectedChara, propertyImages);
+                var chara = await CreateCharactorFullData(selectedChara);
                 CharactorData?.Dispose();
                 CharactorData = chara;
                 GC.Collect();
@@ -182,8 +185,7 @@ namespace GenshenApp.ViewModels
                     CharactorData = charactors[selectedChara.Name];
                 else
                 {
-                    var chara = new CharactorFullData();
-                    await chara.Init(selectedChara, propertyImages);
+                    var chara = await CreateCharactorFullData(selectedChara);
                     lock (charactors)
                     {
                         if (!charactors.ContainsKey(chara.Name))
@@ -236,28 +238,32 @@ namespace GenshenApp.ViewModels
             else
                 results = await loadDataService.LoadJsonBaseData<CharactorData>(ChanId);
 
+            List<Task> tasks = new List<Task>();
+
             // 开启线程加载city中的角色数据
-            if(!settingData.LowMemoryMode)
+            if (!settingData.LowMemoryMode)
             {
                 foreach (var chara in results)
                 {
                     if (charactors.ContainsKey(chara.Name))
                         continue;
                     Task t = Task.Run(async () =>
-                    {
-                        var fChara = new CharactorFullData();
-                        await fChara.Init(chara, propertyImages);
-                        lock (charactors)
                         {
-                            if (!charactors.ContainsKey(fChara.Name))
-                                charactors.Add(fChara.Name, fChara);
-                            else
-                                fChara = null;
+                            var fChara = await CreateCharactorFullData(chara);
+                            lock (charactors)
+                            {
+                                if (!charactors.ContainsKey(fChara.Name))
+                                    charactors.Add(fChara.Name, fChara);
+                                else
+                                    fChara = null;
+                            }
                         }
-                    }
                     );
+                    tasks.Add(t);
                 }
             }
+
+            await Task.WhenAll(tasks);
 
             return () =>
             {
@@ -276,7 +282,7 @@ namespace GenshenApp.ViewModels
                     bitmapImage = backgroundImages[url];
                 else
                 {
-                    bitmapImage = await HttpHelper.GetImageAsync(url);
+                    bitmapImage = await bitmapImageManager.GetBitmapImage(url);
                     lock(backgroundImages){
                         if(!backgroundImages.ContainsKey(url))
                             backgroundImages.Add(url, bitmapImage);
@@ -286,7 +292,7 @@ namespace GenshenApp.ViewModels
                 }
             }
             else
-                bitmapImage = await HttpHelper.GetImageAsync(url);
+                bitmapImage = await bitmapImageManager.GetBitmapImage(url);
 
             return () =>
             {
@@ -304,7 +310,7 @@ namespace GenshenApp.ViewModels
                     bitmapImage = backgroundImages[url];
                 else
                 {
-                    bitmapImage = await HttpHelper.GetImageAsync(url);
+                    bitmapImage = await bitmapImageManager.GetBitmapImage(url);
                     lock (backgroundImages)
                     {
                         if (!backgroundImages.ContainsKey(url))
@@ -315,7 +321,7 @@ namespace GenshenApp.ViewModels
                 }
             }
             else
-                bitmapImage = await HttpHelper.GetImageAsync(url);
+                bitmapImage = await bitmapImageManager.GetBitmapImage(url);
 
             return () =>
             {
@@ -339,6 +345,44 @@ namespace GenshenApp.ViewModels
                     break;
             }
             SelectedChara = CharaList[index];
+        }
+
+        private async Task<CharactorFullData> CreateCharactorFullData(CharactorData charactor)
+        {
+            var fChara = new CharactorFullData();
+            fChara.Init(charactor);
+
+            List<Task> tasks = new List<Task> {
+                bitmapImageManager.GetBitmapImage(charactor.Icon)
+                    .ContinueWith(e => fChara.Icon = e.Result),
+                bitmapImageManager.GetBitmapImage(charactor.CharactorImage)
+                    .ContinueWith(e => fChara.CharactorImage = e.Result),
+                bitmapImageManager.GetBitmapImage(charactor.NameImage)
+                    .ContinueWith(e => fChara.NameImage = e.Result),
+                bitmapImageManager.GetBitmapImage(charactor.LinesImage)
+                    .ContinueWith(e => fChara.LinesImage = e.Result),
+            };
+
+            // 属性图
+            if (propertyImages.ContainsKey(charactor.PropertyImage))
+                fChara.PropertyImage = propertyImages[charactor.PropertyImage];
+            else
+            {
+                tasks.Add(bitmapImageManager.GetBitmapImage(charactor.PropertyImage).ContinueWith(e =>
+                {
+                    fChara.PropertyImage = e.Result;
+                    lock (propertyImages)
+                    {
+                        if (!propertyImages.ContainsKey(charactor.PropertyImage))
+                            propertyImages.Add(charactor.PropertyImage, fChara.PropertyImage);
+                        else
+                            fChara.PropertyImage = propertyImages[charactor.PropertyImage];
+                    }
+                }));
+            }
+            await Task.WhenAll(tasks);
+
+            return fChara;
         }
 
         #region INavigationAware

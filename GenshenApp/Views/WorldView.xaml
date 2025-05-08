@@ -126,13 +126,13 @@
                 <Grid Width="1250" Height="700">
                     <Image
                         d:Source="https://ys.mihoyo.com/main/_nuxt/img/s1.5c125a1.png"
-                        Source="https://ys.mihoyo.com/main/_nuxt/img/s1.5c125a1.png"
+                        Source="{Binding FirstBackground}"
                         Stretch="UniformToFill" />
                     <StackPanel VerticalAlignment="Center" Orientation="Vertical">
                         <Image
                             Width="320"
                             d:Source="https://ys.mihoyo.com/main/_nuxt/img/title.7e5cc2a.png"
-                            Source="https://ys.mihoyo.com/main/_nuxt/img/title.7e5cc2a.png" />
+                            Source="{Binding TitleImage}" />
                         <Image
                             Width="480"
                             Margin="0,20"

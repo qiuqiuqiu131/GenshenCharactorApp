@@ -124,7 +124,7 @@
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>
                 <Grid Width="1250" Height="180">
-                    <Image Source="https://ys.mihoyo.com/main/_nuxt/img/c3.9a62be8.jpg" Stretch="UniformToFill" />
+                    <Image Source="{Binding DefaultAreaImage}" Stretch="UniformToFill" />
                     <TextBlock
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"

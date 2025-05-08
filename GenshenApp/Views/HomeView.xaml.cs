@@ -33,6 +33,8 @@ namespace GenshenApp.Views
         private DoubleAnimation ani = new();
         private Storyboard sb = new();
 
+        private double currentPos = 0;
+
         public HomeView(IEventAggregator eventAggregator,IContainerProvider container)
         {
             InitializeComponent();
@@ -62,10 +64,15 @@ namespace GenshenApp.Views
         {
             double dis;
             if (e.Delta > 0)
-                dis = -350;
+                dis = -200;
             else
-                dis = 350;
-            SetScrollViewerOffset(scrollView.VerticalOffset + dis);
+                dis = 200;
+
+            var value = currentPos + dis;
+            if (value < 0) value = 0;
+            if (value > scrollView.ScrollableHeight) value = scrollView.ScrollableHeight;
+            
+            SetScrollViewerOffset(value);
             e.Handled = true;
         }
 
@@ -85,7 +92,7 @@ namespace GenshenApp.Views
         private void InitStoryBoard()
         {
             ani.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
-            ani.EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut };
+            ani.EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(ani, scrollView);
             Storyboard.SetTargetProperty(ani, new PropertyPath("(ext:ScrollViewExtension.MyVerticalOffset)"));
             sb.Children.Add(ani);
@@ -93,6 +100,8 @@ namespace GenshenApp.Views
 
         private void SetScrollViewerOffset(double value)
         {
+            currentPos = value;
+            
             ani.To = value;
             sb.Begin();
 

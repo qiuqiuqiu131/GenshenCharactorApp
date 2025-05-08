@@ -7,17 +7,45 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4ff31a86-8dba-4a66-ac30-6ea6b66773fe" name="Changes" comment="" />
+    <list default="true" id="4ff31a86-8dba-4a66-ac30-6ea6b66773fe" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/GenshenApp/Common/FullData/CharactorFullData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.GenshenCharactorApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.GenshenCharactorApp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/App.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/App.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/Common/CharactorFullData.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/Common/WorldFullData.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Common/FullData/WorldFullData.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/Helper/HttpHelper.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Helper/HttpHelper.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/UserControls/Charactors/CharactorList.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Charactors/CharactorList.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/UserControls/Charactors/LeftPanel.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Charactors/LeftPanel.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/UserControls/Dialog/WorldDetailView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Dialog/WorldDetailView.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/UserControls/Dialog/WorldDetailView.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Dialog/WorldDetailView.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/UserControls/Homes/HomeNews.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/UserControls/Homes/HomeNews.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/ViewModels/CharactorViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/ViewModels/CharactorViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/ViewModels/HomeViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/ViewModels/HomeViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/ViewModels/WorldViewModel.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/ViewModels/WorldViewModel.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/Views/CharactorView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/CharactorView.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/Views/HomeView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/HomeView.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/Views/HomeView.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/HomeView.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/Views/NewsView.xaml.cs" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/NewsView.xaml.cs" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/GenshenApp/Views/WorldView.xaml" beforeDir="false" afterPath="$PROJECT_DIR$/GenshenApp/Views/WorldView.xaml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="DpaMonitoringSettings">
+    <option name="autoShow" value="false" />
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="HighlightingSettingsPerFile">
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5aeb6167299d4cfba30c86624130edbcc90938/a8/3968cbd6/ExceptionDispatchInfo.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/5aeb6167299d4cfba30c86624130edbcc90938/fe/a63c77ad/ExecutionContext.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/7b7221a26f9e49768fa85e6a15f9122916460/8a/c3146b6c/EventAggregator.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d079e839ea2040f09d8282baf64f01edf61928/c4/4f9380bb/CollectionView.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="file://$APPLICATION_CONFIG_DIR$/resharper-host/DecompilerCache/decompiler/d079e839ea2040f09d8282baf64f01edf61928/d3/cfd97ecc/Storyboard.cs" root0="SKIP_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GenshenApp/ViewModels/MainWindowViewModel.cs" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml" root0="FORCE_HIGHLIGHTING" />
     <setting file="file://$PROJECT_DIR$/GenshenApp/Views/MainWindow.xaml.cs" root0="FORCE_HIGHLIGHTING" />
@@ -27,6 +55,9 @@
   &quot;associatedIndex&quot;: 6
 }</component>
   <component name="ProjectId" id="2nQQ3AnYW8u5a2MEOiLjRprpRpb" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="1" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -85,6 +116,8 @@
       <workItem from="1728914050727" duration="369000" />
       <workItem from="1729836024940" duration="2777000" />
       <workItem from="1744728060859" duration="11000" />
+      <workItem from="1745290661963" duration="1000" />
+      <workItem from="1746703959931" duration="7817000" />
     </task>
     <servers />
   </component>
@@ -94,5 +127,37 @@
   <component name="UnityProjectConfiguration" hasMinimizedUI="false" />
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/GenshenApp/ViewModels/WorldViewModel.cs</url>
+          <line>122</line>
+          <properties documentPath="D:\LanguageLearnig\WPF\GenshenCharactorApp\GenshenApp\ViewModels\WorldViewModel.cs" containingFunctionPresentation="Lambda expression inside Method 'Init'">
+            <startOffsets>
+              <option value="4291" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4292" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="9" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DotNet Breakpoints">
+          <url>file://$PROJECT_DIR$/GenshenApp/ViewModels/WorldViewModel.cs</url>
+          <line>132</line>
+          <properties documentPath="D:\LanguageLearnig\WPF\GenshenCharactorApp\GenshenApp\ViewModels\WorldViewModel.cs" containingFunctionPresentation="Method 'ShowDetail'">
+            <startOffsets>
+              <option value="4542" />
+            </startOffsets>
+            <endOffsets>
+              <option value="4594" />
+            </endOffsets>
+          </properties>
+          <option name="timeStamp" value="10" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

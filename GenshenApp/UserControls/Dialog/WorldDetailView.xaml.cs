@@ -1,21 +1,10 @@
-﻿using DryIoc;
-using GenshenApp.Events;
+﻿using GenshenApp.Events;
 using Prism.Events;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace GenshenApp.UserControls.Dialog
 {
@@ -28,6 +17,8 @@ namespace GenshenApp.UserControls.Dialog
 
         private DoubleAnimation ani = new();
         private Storyboard sb = new();
+
+        private double currentPos;
 
         public WorldDetailView(IEventAggregator eventAggregator)
         {
@@ -49,14 +40,17 @@ namespace GenshenApp.UserControls.Dialog
                 dis = -350;
             else
                 dis = 350;
-            SetScrollViewerOffset(scrollView.VerticalOffset + dis);
+            double value = currentPos + dis;
+            if (value < 0) value = 0;
+            if (value > scrollView.ScrollableHeight) value = scrollView.ScrollableHeight;
+            SetScrollViewerOffset(value);
             e.Handled = true;
         }
 
         private void InitStoryBoard()
         {
             ani.Duration = new Duration(new TimeSpan(0, 0, 0, 0, 200));
-            ani.EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseInOut };
+            ani.EasingFunction = new QuadraticEase { EasingMode = EasingMode.EaseOut };
             Storyboard.SetTarget(ani, scrollView);
             Storyboard.SetTargetProperty(ani, new PropertyPath("(ext:ScrollViewExtension.MyVerticalOffset)"));
             sb.Children.Add(ani);
@@ -64,6 +58,8 @@ namespace GenshenApp.UserControls.Dialog
 
         private void SetScrollViewerOffset(double value)
         {
+            currentPos = value;
+            
             ani.To = value;
             sb.Begin();
         }

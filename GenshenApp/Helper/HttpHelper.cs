@@ -14,8 +14,6 @@ namespace GenshenApp.Helper
 {
     public static class HttpHelper
     {
-        private static HttpClient httpClient = new();
-
         /// <summary>
         /// Get an http response from sending request to a specific url
         /// </summary>
@@ -29,6 +27,7 @@ namespace GenshenApp.Helper
                 RequestUri = new Uri(url),
                 Method = method ?? HttpMethod.Get
             };
+            var httpClient = new HttpClient();
             var response = await httpClient.SendAsync(request);
             response.EnsureSuccessStatusCode();
             return response;

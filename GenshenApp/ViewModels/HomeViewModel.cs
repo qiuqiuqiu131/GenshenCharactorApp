@@ -5,11 +5,9 @@ using Prism.Services.Dialogs;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Media.Imaging;
 using GenshenApp.Common;
 using GenshenApp.Common.JosnData;
 using GenshenApp.Helper;
@@ -21,6 +19,7 @@ namespace GenshenApp.ViewModels
     {
         private readonly IRegionManager regionManager;
         private readonly ILoadDataService loadDataService;
+        private readonly IBitmapImageManager bitmapImageManager;
         private readonly IProgramDataService programDataService;
 
         private ProgramData programData
@@ -34,7 +33,27 @@ namespace GenshenApp.ViewModels
         public string HomeVideoUrl => settingData.HomeVideoUrl;
         
         // 区域数据
-        public List<CityData> CityDatas => programData.CityData;
+        private List<CityFullData> _cityDatas;
+
+        public List<CityFullData> CityDatas
+        {
+            get => _cityDatas;
+            set => SetProperty(ref _cityDatas, value);
+        }
+
+        private BitmapImage newsBackground;
+        public BitmapImage NewsBackground
+        {
+            get => newsBackground;
+            set => SetProperty(ref newsBackground, value);
+        }
+        
+        private BitmapImage defaultAreaImage;
+        public BitmapImage DefaultAreaImage
+        {
+            get => defaultAreaImage;
+            set => SetProperty(ref defaultAreaImage, value);
+        }
 
         // 新闻bar
         private ObservableCollection<string> newBars = new()
@@ -52,8 +71,8 @@ namespace GenshenApp.ViewModels
         }
 
         // 左侧滚动图标
-        private ObservableCollection<HomeNewData> homeNewDatas;
-        public ObservableCollection<HomeNewData> HomeNewDatas
+        private ObservableCollection<HomeNewFullData> homeNewDatas;
+        public ObservableCollection<HomeNewFullData> HomeNewDatas
         {
             get => homeNewDatas;
             set => SetProperty(ref homeNewDatas, value);
@@ -66,10 +85,14 @@ namespace GenshenApp.ViewModels
         public DelegateCommand<string> HomeNewClickCommand { get; private set; }
         #endregion
 
-        public HomeViewModel(IRegionManager regionManager,ILoadDataService loadDataService,IProgramDataService programDataService) 
+        public HomeViewModel(IRegionManager regionManager,
+            ILoadDataService loadDataService,
+            IBitmapImageManager bitmapImageManager,
+            IProgramDataService programDataService) 
         {
             this.regionManager = regionManager;
             this.loadDataService = loadDataService;
+            this.bitmapImageManager = bitmapImageManager;
             this.programDataService = programDataService;
 
             ItemClickCommand = new DelegateCommand<CityData>(ItemClick);
@@ -77,6 +100,28 @@ namespace GenshenApp.ViewModels
             NewsSelectionChangedCommand = new DelegateCommand<string>(NewsSelectionChanged);
             NewClickCommand = new DelegateCommand<string>(NewClick);
             HomeNewClickCommand = new DelegateCommand<string>(HomeNewClick);
+
+            InitSources();
+        }
+
+        private async void InitSources()
+        {
+            NewsBackground =
+                await bitmapImageManager.GetBitmapImage("https://ys.mihoyo.com/main/_nuxt/img/news_bg.29770c4.jpg");
+            DefaultAreaImage =
+                await bitmapImageManager.GetBitmapImage("https://ys.mihoyo.com/main/_nuxt/img/c3.9a62be8.jpg");
+            
+            var cityDatas = new List<CityFullData>();
+            foreach (var cityData in programData.CityData)
+            {
+                var cityFullData = new CityFullData();
+                cityFullData.Name = cityData.Name;
+                cityFullData.ItemBackground = await bitmapImageManager.GetBitmapImage(cityData.ItemBackground);
+                cityFullData.ItemCharactor = await bitmapImageManager.GetBitmapImage(cityData.ItemCharactor);
+                cityDatas.Add(cityFullData);
+            }
+
+            CityDatas = cityDatas;
         }
 
         private void NewsSelectionChanged(string obj)
@@ -135,7 +180,20 @@ namespace GenshenApp.ViewModels
 
             loadDataService.LoadJsonBaseData<HomeNewData>(settingData.HomeNewsDataUrl, 1, 4, -1).ContinueWith(result =>
             {
-                HomeNewDatas = new ObservableCollection<HomeNewData>(result.Result);
+                var homeNews = result.Result;
+                var homeNewDatas = new ObservableCollection<HomeNewFullData>();
+                foreach (var homeNew in homeNews)
+                {
+                    var homeFullNew = new HomeNewFullData();
+                    homeFullNew.Init(homeNew);
+                    homeNewDatas.Add(homeFullNew);
+                    Task.Run(async () =>
+                    {
+                        homeFullNew.Image = await bitmapImageManager.GetBitmapImage(homeNew.Image);
+                    });
+                }
+
+                HomeNewDatas = homeNewDatas;
             });
         }
 

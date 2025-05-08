@@ -48,6 +48,7 @@ namespace GenshenApp
 
             containerRegistry.Register<ILoadDataService, LoadDataService>();
             containerRegistry.RegisterSingleton<IProgramDataService, ProgramDataService>();
+            containerRegistry.RegisterSingleton<IBitmapImageManager, BitmapImageManager>();
         }
     }
 }
